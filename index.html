@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuiz Kosa Kata Surah Solat | Attartilqi</title>
+<title>Kuiz Surah Solat — Kosa Kata &amp; Nahu Sarf | Attartilqi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -22,7 +22,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Lora', serif;
+    font-family: 'Lora', 'Amiri Quran Embed', serif;
     background: linear-gradient(180deg, var(--parchment) 0%, #ede2c8 100%);
     color: var(--ink);
     min-height: 100vh;
@@ -84,7 +84,7 @@
   .progress-bar-track { height: 7px; background: #e5d8b5; border-radius: 6px; overflow: hidden; margin-bottom: 18px; }
   .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--teal)); border-radius: 6px; transition: width 0.3s ease; }
   .section-tag { display: inline-block; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; color: var(--gold); background: rgba(200,149,42,0.12); padding: 4px 10px; border-radius: 20px; margin-bottom: 14px; }
-  .surah-chip { float: right; font-size: 11.5px; color: var(--teal-dark); font-weight: 600; padding-top: 4px; }
+  .surah-chip { display: block; text-align: right; margin: -6px 0 6px; font-size: 11.5px; color: var(--teal-dark); font-weight: 600; padding-top: 4px; }
 
   .arabic-word { font-family: 'Amiri Quran Embed', 'Amiri Quran', 'Amiri', serif; font-size: 54px; text-align: center; color: var(--emerald); direction: rtl; margin: 10px 0 8px; line-height: 1.7; }
   .ayah-context {
@@ -97,7 +97,7 @@
   .options { display: flex; flex-direction: column; gap: 10px; }
   .option-btn {
     text-align: left; padding: 13px 16px; border-radius: 9px; border: 1.5px solid #d8ccab; background: #fff;
-    font-family: 'Lora', serif; font-size: 16px; color: var(--ink); cursor: pointer; transition: all 0.15s ease;
+    font-family: 'Lora', 'Amiri Quran Embed', serif; font-size: 16px; color: var(--ink); cursor: pointer; transition: all 0.15s ease;
   }
   .option-btn:hover { border-color: var(--teal); background: #f6f1e0; }
   .option-btn.correct { background: #e5f2e7; border-color: var(--success); color: var(--success); font-weight: 600; }
@@ -134,6 +134,15 @@
   .badge-ok, .badge-no { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
   .badge-ok { background: #e5f2e7; color: var(--success); }
   .badge-no { background: #f5e6e6; color: var(--error); }
+  .seg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .seg-btn strong { color: var(--teal-dark); }
+  .arabic-word.phrase { font-size: 36px; line-height: 1.9; }
+  .options.row { flex-direction: row; flex-wrap: wrap; }
+  .options.row .option-btn { flex: 1 1 140px; text-align: center; font-weight: 600; }
+  .option-btn.has-ar { font-family: 'Amiri Quran Embed', 'Amiri Quran', 'Lora', serif; font-size: 18px; line-height: 1.9; }
+  .feedback-msg .nota { margin-top: 10px; font-weight: 400; color: #5a4a26; background: #fbf3df; border-left: 3px solid var(--gold); border-radius: 6px; padding: 10px 12px; text-align: left; font-size: 13.5px; line-height: 1.6; }
+  .breakdown-item .sub { font-size: 11px; color: #8a7440; margin-top: 2px; }
+  .breakdown { flex-wrap: wrap; }
   .hidden { display: none !important; }
   footer.brand-foot { text-align: center; font-size: 11.5px; color: #9a8a5f; margin-top: 22px; letter-spacing: 0.5px; line-height: 1.7; }
   @media (max-width: 480px) {
@@ -151,19 +160,17 @@
   <div class="header-band">
     <div class="kicker">Institut Al-Quran Attartilqi</div>
     <h1>مُفْرَدَاتُ السُّوَرِ</h1>
-    <div class="sub">Kuiz Latih Tubi Kosa Kata &middot; Surah-Surah Bacaan Solat (FBDS)</div>
+    <div class="sub">Kuiz Latih Tubi &middot; Kosa Kata &amp; Nahu Sarf &middot; Surah-Surah Bacaan Solat (FBDS)</div>
   </div>
 
   <!-- ============ SCREEN 1: INTRO ============ -->
   <div id="screen-intro" class="card">
     <p style="font-size:14.5px; line-height:1.7; color:#5a4a26;">
-      Kuiz ini menguji kemahiran <strong>mengenal kalimah</strong> dan <strong>makna asas</strong> perkataan demi perkataan dalam surah-surah yang lazim dibaca dalam solat. Pilih satu surah, atau campuran semua surah.
+      Latih tubi surah-surah yang lazim dibaca dalam solat. Pilih <strong>segmen</strong>, kemudian pilih satu surah atau campuran semua surah.
     </p>
-    <div class="info-note">
-      <strong>Bahagian A</strong> &mdash; <span id="info-a">20</span> soalan pilihan berganda<br>
-      <strong>Bahagian B</strong> &mdash; <span id="info-b">10</span> soalan taip jawapan sendiri (makna dalam Bahasa Melayu)<br>
-      <span style="font-size:12.5px;">Setiap kalimah dipaparkan bersama ayatnya supaya maknanya difahami dalam konteks.</span>
-    </div>
+    <label>Pilih Segmen</label>
+    <div class="seg-grid" id="seg-grid"></div>
+    <div class="info-note" id="seg-info"></div>
 
     <label>Pilih Surah</label>
     <div class="surah-grid" id="surah-grid"></div>
@@ -208,12 +215,11 @@
         <div class="den" id="final-den">/ 30</div>
       </div>
       <div style="font-size:16px; font-weight:600; color:var(--teal-dark);" id="result-name-line"></div>
+      <div style="font-size:13.5px; color:#8a7440; margin-top:2px;" id="result-seg-line"></div>
       <div class="encourage" id="encourage"></div>
     </div>
-    <div class="breakdown">
-      <div class="breakdown-item"><div class="label">Bahagian A</div><div class="val" id="score-a">0 / 20</div></div>
-      <div class="breakdown-item"><div class="label">Bahagian B</div><div class="val" id="score-b">0 / 10</div></div>
-    </div>
+    <div class="breakdown" id="breakdown"></div>
+    <div id="save-status" style="text-align:center; font-size:13px; color:#6b5d3f; margin-top:4px;"></div>
     <button class="btn btn-gold" onclick="sendWhatsApp()">📲 Hantar Keputusan ke WhatsApp UZB</button>
     <button class="btn btn-outline" onclick="restartQuiz()">Ulang / Pilih Surah Lain</button>
     <div class="review-list" id="review-list"></div>
@@ -221,96 +227,154 @@
 
   <footer class="brand-foot">
     Institut Al-Quran Attartilqi &middot; <em>Where Qur'anic Knowledge Transforms Lives</em><br>
-    Teks ayat: al-Maktabah al-Shamela (Mushaf KFQPC, riwayat Hafs). Makna perkataan: ringkasan kontekstual untuk latihan &mdash; bukan terjemahan rasmi.
+    Teks ayat: al-Maktabah al-Shamela (Mushaf KFQPC, riwayat Hafs). Makna perkataan: ringkasan kontekstual untuk latihan &mdash; bukan terjemahan rasmi. Nahu: aliran Basrah (rujukan i&#39;rab: al-Jadwal, Darwish; Mughni al-Labib).
   </footer>
 </div>
 
 <script>
 /* ======================================================
-   KONFIGURASI - UZB: tukar nombor WhatsApp di bawah
-   Format: kod negara tanpa "+" atau "0", cth Singapura: 65XXXXXXXX
+   KONFIGURASI
    ====================================================== */
-const WHATSAPP_NUMBER = "6596996098"; // nombor WhatsApp UZB
-const COUNT_A = 20, COUNT_B = 10;
+const WHATSAPP_NUMBER = "6596996098";   // nombor WhatsApp UZB (kod negara, tanpa +)
+const SHEET_URL = "";  // Web App Google Apps Script; "" = dimatikan
 
 /* ======================================================
-   DATA — teks ayat dari al-Maktabah al-Shamela (KFQPC, Hafs);
-   bank mufradat disusun Al-Mu'jami, disemak ATV (13 Okt 2026).
+   DATA — teks ayat: al-Maktabah al-Shamela (KFQPC, Hafs).
+   Kosa kata: Al-Mu'jami · Nahu & Sarf: Al-Mu'allim · disemak ATV (13 Okt 2026).
    ====================================================== */
 const AYAT = {"surah": [{"no": 1, "name": "Al-Fatihah", "ar": "الفاتحة", "ayat": ["بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ", "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ", "ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ", "مَٰلِكِ يَوۡمِ ٱلدِّينِ", "إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ", "ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ", "صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ"]}, {"no": 2, "name": "Al-Baqarah (ayat 1–5)", "ar": "البقرة", "ayat": ["الٓمٓ", "ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ", "ٱلَّذِينَ يُؤۡمِنُونَ بِٱلۡغَيۡبِ وَيُقِيمُونَ ٱلصَّلَوٰةَ وَمِمَّا رَزَقۡنَٰهُمۡ يُنفِقُونَ", "وَٱلَّذِينَ يُؤۡمِنُونَ بِمَآ أُنزِلَ إِلَيۡكَ وَمَآ أُنزِلَ مِن قَبۡلِكَ وَبِٱلۡأٓخِرَةِ هُمۡ يُوقِنُونَ", "أُوْلَٰٓئِكَ عَلَىٰ هُدٗى مِّن رَّبِّهِمۡۖ وَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ"]}, {"no": 102, "name": "At-Takathur", "ar": "التكاثر", "ayat": ["أَلۡهَىٰكُمُ ٱلتَّكَاثُرُ", "حَتَّىٰ زُرۡتُمُ ٱلۡمَقَابِرَ", "كَلَّا سَوۡفَ تَعۡلَمُونَ", "ثُمَّ كَلَّا سَوۡفَ تَعۡلَمُونَ", "كَلَّا لَوۡ تَعۡلَمُونَ عِلۡمَ ٱلۡيَقِينِ", "لَتَرَوُنَّ ٱلۡجَحِيمَ", "ثُمَّ لَتَرَوُنَّهَا عَيۡنَ ٱلۡيَقِينِ", "ثُمَّ لَتُسۡـَٔلُنَّ يَوۡمَئِذٍ عَنِ ٱلنَّعِيمِ"]}, {"no": 103, "name": "Al-'Asr", "ar": "العصر", "ayat": ["وَٱلۡعَصۡرِ", "إِنَّ ٱلۡإِنسَٰنَ لَفِي خُسۡرٍ", "إِلَّا ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ وَتَوَاصَوۡاْ بِٱلۡحَقِّ وَتَوَاصَوۡاْ بِٱلصَّبۡرِ"]}, {"no": 108, "name": "Al-Kauthar", "ar": "الكوثر", "ayat": ["إِنَّآ أَعۡطَيۡنَٰكَ ٱلۡكَوۡثَرَ", "فَصَلِّ لِرَبِّكَ وَٱنۡحَرۡ", "إِنَّ شَانِئَكَ هُوَ ٱلۡأَبۡتَرُ"]}, {"no": 109, "name": "Al-Kafirun", "ar": "الكافرون", "ayat": ["قُلۡ يَٰٓأَيُّهَا ٱلۡكَٰفِرُونَ", "لَآ أَعۡبُدُ مَا تَعۡبُدُونَ", "وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ", "وَلَآ أَنَا۠ عَابِدٞ مَّا عَبَدتُّمۡ", "وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ", "لَكُمۡ دِينُكُمۡ وَلِيَ دِينِ"]}, {"no": 110, "name": "An-Nasr", "ar": "النصر", "ayat": ["إِذَا جَآءَ نَصۡرُ ٱللَّهِ وَٱلۡفَتۡحُ", "وَرَأَيۡتَ ٱلنَّاسَ يَدۡخُلُونَ فِي دِينِ ٱللَّهِ أَفۡوَاجٗا", "فَسَبِّحۡ بِحَمۡدِ رَبِّكَ وَٱسۡتَغۡفِرۡهُۚ إِنَّهُۥ كَانَ تَوَّابَۢا"]}, {"no": 112, "name": "Al-Ikhlas", "ar": "الإخلاص", "ayat": ["قُلۡ هُوَ ٱللَّهُ أَحَدٌ", "ٱللَّهُ ٱلصَّمَدُ", "لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ", "وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ"]}, {"no": 113, "name": "Al-Falaq", "ar": "الفلق", "ayat": ["قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ", "مِن شَرِّ مَا خَلَقَ", "وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ", "وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ", "وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ"]}, {"no": 114, "name": "An-Nas", "ar": "الناس", "ayat": ["قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ", "مَلِكِ ٱلنَّاسِ", "إِلَٰهِ ٱلنَّاسِ", "مِن شَرِّ ٱلۡوَسۡوَاسِ ٱلۡخَنَّاسِ", "ٱلَّذِي يُوَسۡوِسُ فِي صُدُورِ ٱلنَّاسِ", "مِنَ ٱلۡجِنَّةِ وَٱلنَّاسِ"]}]};
 const BANK = {"1": [{"ar": "بِسۡمِ", "ayah": [1], "makna": "dengan nama", "alt": ["nama", "dengan nama allah", "atas nama"]}, {"ar": "ٱللَّهِ", "ayah": [1], "makna": "Allah", "alt": ["tuhan allah", "allah swt", "allah taala"]}, {"ar": "ٱلرَّحۡمَٰنِ", "ayah": [1, 3], "makna": "Yang Maha Pemurah", "alt": ["maha pemurah", "pemurah", "yang maha pengasih", "maha pengasih"]}, {"ar": "ٱلرَّحِيمِ", "ayah": [1, 3], "makna": "lagi Maha Penyayang", "alt": ["maha penyayang", "penyayang", "yang maha penyayang"]}, {"ar": "ٱلۡحَمۡدُ", "ayah": [2], "makna": "segala puji", "alt": ["pujian", "puji", "semua puji", "segala pujian"]}, {"ar": "لِلَّهِ", "ayah": [2], "makna": "bagi Allah", "alt": ["untuk allah", "kepunyaan allah", "milik allah"]}, {"ar": "رَبِّ", "ayah": [2], "makna": "Tuhan", "alt": ["tuhan", "pemelihara", "rabb", "tuhan yang memelihara"]}, {"ar": "ٱلۡعَٰلَمِينَ", "ayah": [2], "makna": "sekalian alam", "alt": ["seluruh alam", "semesta alam", "alam semesta", "sekalian makhluk"]}, {"ar": "مَٰلِكِ", "ayah": [4], "makna": "yang menguasai", "alt": ["yang memiliki", "pemilik", "penguasa", "yang empunya", "menguasai"]}, {"ar": "يَوۡمِ", "ayah": [4], "makna": "hari", "alt": ["hari", "pada hari", "hari itu"]}, {"ar": "ٱلدِّينِ", "ayah": [4], "makna": "pembalasan", "alt": ["hari pembalasan", "pembalasan", "balasan"]}, {"ar": "إِيَّاكَ", "ayah": [5], "makna": "hanya kepada Engkau", "alt": ["kepada engkau", "engkau sahaja", "hanya engkau", "kepada-mu"]}, {"ar": "نَعۡبُدُ", "ayah": [5], "makna": "kami menyembah", "alt": ["kami sembah", "menyembah", "kami beribadah", "sembah"]}, {"ar": "وَإِيَّاكَ", "ayah": [5], "makna": "dan hanya kepada Engkau", "alt": ["dan kepada engkau", "dan engkau sahaja", "dan hanya engkau"]}, {"ar": "نَسۡتَعِينُ", "ayah": [5], "makna": "kami memohon pertolongan", "alt": ["kami minta tolong", "memohon pertolongan", "minta pertolongan", "kami mohon pertolongan"]}, {"ar": "ٱهۡدِنَا", "ayah": [6], "makna": "tunjukilah kami", "alt": ["tunjukkanlah kami", "tunjuki kami", "pimpinlah kami", "berilah kami petunjuk"]}, {"ar": "ٱلصِّرَٰطَ", "ayah": [6], "makna": "jalan", "alt": ["jalan", "jalan itu", "landasan"], "avoid": ["صِرَٰطَ"]}, {"ar": "ٱلۡمُسۡتَقِيمَ", "ayah": [6], "makna": "yang lurus", "alt": ["lurus", "yang benar", "yang lurus itu"]}, {"ar": "صِرَٰطَ", "ayah": [7], "makna": "(iaitu) jalan", "alt": ["iaitu jalan", "jalan", "jalan orang"], "avoid": ["ٱلصِّرَٰطَ"]}, {"ar": "ٱلَّذِينَ", "ayah": [7], "makna": "orang-orang yang", "alt": ["orang yang", "mereka yang", "yang"]}, {"ar": "أَنۡعَمۡتَ", "ayah": [7], "makna": "Engkau kurniakan nikmat", "alt": ["engkau beri nikmat", "engkau kurniakan", "engkau anugerahkan nikmat", "engkau beri"]}, {"ar": "عَلَيۡهِمۡ", "ayah": [7], "makna": "ke atas mereka", "alt": ["atas mereka", "kepada mereka", "ke atas mereka itu"]}, {"ar": "غَيۡرِ", "ayah": [7], "makna": "bukan", "alt": ["bukan", "selain", "bukannya"]}, {"ar": "ٱلۡمَغۡضُوبِ", "ayah": [7], "makna": "mereka yang dimurkai", "alt": ["yang dimurkai", "dimurkai", "orang yang dimurkai", "yang dimurkai itu"]}, {"ar": "وَلَا", "ayah": [7], "makna": "dan bukan pula", "alt": ["dan bukan", "dan tidak", "dan bukan juga"]}, {"ar": "ٱلضَّآلِّينَ", "ayah": [7], "makna": "mereka yang sesat", "alt": ["yang sesat", "sesat", "orang yang sesat", "orang-orang yang sesat"]}], "2": [{"ar": "الٓمٓ", "ayah": [1], "makna": "huruf muqatta'ah (Allah lebih mengetahui maksudnya)", "alt": ["huruf muqattaah", "alif lam mim"], "skip": true}, {"ar": "ذَٰلِكَ", "ayah": [2], "makna": "itu", "alt": ["yang itu", "itulah"]}, {"ar": "ٱلۡكِتَٰبُ", "ayah": [2], "makna": "kitab (al-Quran)", "alt": ["kitab", "al-quran", "al-kitab", "kitab itu"]}, {"ar": "لَا", "ayah": [2], "makna": "tiada", "alt": ["tidak", "tidak ada", "tiada ada"]}, {"ar": "رَيۡبَ", "ayah": [2], "makna": "keraguan", "alt": ["ragu", "syak", "keraguan apa pun", "ragu-ragu"]}, {"ar": "فِيهِ", "ayah": [2], "makna": "padanya", "alt": ["di dalamnya", "padanya itu", "dalamnya"]}, {"ar": "هُدٗى", "ayah": [2, 5], "makna": "petunjuk", "alt": ["hidayah", "panduan", "pimpinan", "bimbingan"]}, {"ar": "لِّلۡمُتَّقِينَ", "ayah": [2], "makna": "bagi orang-orang bertakwa", "alt": ["orang bertakwa", "orang yang bertakwa", "bagi yang bertakwa", "untuk orang bertakwa", "bagi orang yang bertakwa"]}, {"ar": "ٱلَّذِينَ", "ayah": [3], "makna": "orang-orang yang", "alt": ["orang yang", "mereka yang", "yang"]}, {"ar": "يُؤۡمِنُونَ", "ayah": [3, 4], "makna": "mereka beriman", "alt": ["beriman", "percaya", "mereka percaya", "mereka yang beriman"]}, {"ar": "بِٱلۡغَيۡبِ", "ayah": [3], "makna": "kepada yang ghaib", "alt": ["yang ghaib", "ghaib", "perkara ghaib", "dengan yang ghaib"]}, {"ar": "وَيُقِيمُونَ", "ayah": [3], "makna": "dan mereka mendirikan", "alt": ["mendirikan", "mereka mendirikan", "dan mendirikan", "dan menegakkan"]}, {"ar": "ٱلصَّلَوٰةَ", "ayah": [3], "makna": "solat", "alt": ["sembahyang", "salat", "shalat", "solat itu"]}, {"ar": "وَمِمَّا", "ayah": [3], "makna": "dan sebahagian daripada apa", "alt": ["sebahagian daripada", "dan daripada apa", "sebahagian dari apa", "dan dari apa"]}, {"ar": "رَزَقۡنَٰهُمۡ", "ayah": [3], "makna": "Kami rezekikan kepada mereka", "alt": ["kami beri rezeki", "kami rezekikan", "kami kurniakan kepada mereka", "kami berikan kepada mereka"]}, {"ar": "يُنفِقُونَ", "ayah": [3], "makna": "mereka belanjakan", "alt": ["mereka infakkan", "membelanjakan", "menafkahkan", "berinfak", "mereka nafkahkan"]}, {"ar": "وَٱلَّذِينَ", "ayah": [4], "makna": "dan orang-orang yang", "alt": ["dan orang yang", "dan mereka yang", "dan yang"]}, {"ar": "بِمَآ", "ayah": [4], "makna": "kepada apa yang", "alt": ["dengan apa yang", "apa yang", "akan apa yang"]}, {"ar": "أُنزِلَ", "ayah": [4], "makna": "telah diturunkan", "alt": ["diturunkan", "yang diturunkan", "diwahyukan"]}, {"ar": "إِلَيۡكَ", "ayah": [4], "makna": "kepadamu", "alt": ["kepada engkau", "kepada kamu", "kepadamu (muhammad)"]}, {"ar": "وَمَآ", "ayah": [4], "makna": "dan apa yang", "alt": ["dan yang", "dan segala yang", "serta apa yang"]}, {"ar": "مِن", "ayah": [4, 5], "makna": "dari / daripada", "alt": ["dari", "daripada", "dari masa", "dari pihak"], "varian": ["مِّن"]}, {"ar": "قَبۡلِكَ", "ayah": [4], "makna": "sebelummu", "alt": ["sebelum engkau", "sebelum kamu", "sebelum mu"]}, {"ar": "وَبِٱلۡأٓخِرَةِ", "ayah": [4], "makna": "dan kepada akhirat", "alt": ["akhirat", "dan akhirat", "dengan akhirat", "dan kepada hari akhirat"]}, {"ar": "هُمۡ", "ayah": [4], "makna": "mereka", "alt": ["mereka", "merekalah", "mereka itu"], "avoid": ["هُمُ", "أُوْلَٰٓئِكَ", "وَأُوْلَٰٓئِكَ"]}, {"ar": "يُوقِنُونَ", "ayah": [4], "makna": "mereka yakin", "alt": ["yakin", "meyakini", "mereka meyakini", "percaya dengan yakin"]}, {"ar": "أُوْلَٰٓئِكَ", "ayah": [5], "makna": "mereka itulah", "alt": ["mereka itu", "itulah mereka", "merekalah"], "avoid": ["هُمۡ", "هُمُ"]}, {"ar": "عَلَىٰ", "ayah": [5], "makna": "di atas", "alt": ["atas", "berada di atas", "menetapi"]}, {"ar": "رَّبِّهِمۡ", "ayah": [5], "makna": "Tuhan mereka", "alt": ["tuhan", "rabb mereka", "pemelihara mereka"]}, {"ar": "وَأُوْلَٰٓئِكَ", "ayah": [5], "makna": "dan mereka itulah", "alt": ["dan mereka itu", "dan merekalah", "dan itulah mereka"], "avoid": ["هُمۡ", "هُمُ"]}, {"ar": "هُمُ", "ayah": [5], "makna": "merekalah (yang)", "alt": ["mereka", "merekalah", "merekalah yang"], "avoid": ["هُمۡ", "أُوْلَٰٓئِكَ", "وَأُوْلَٰٓئِكَ"]}, {"ar": "ٱلۡمُفۡلِحُونَ", "ayah": [5], "makna": "orang-orang yang berjaya", "alt": ["orang yang berjaya", "berjaya", "beruntung", "orang-orang yang beruntung", "yang berjaya"]}], "102": [{"ar": "أَلۡهَىٰكُمُ", "ayah": [1], "makna": "telah melalaikan kamu", "alt": ["melalaikan kamu", "melalaikan", "kamu dilalaikan", "telah melekakan kamu", "melekakan kamu"]}, {"ar": "ٱلتَّكَاثُرُ", "ayah": [1], "makna": "bermegah-megah memperbanyak (dunia)", "alt": ["bermegah-megah", "berlumba-lumba memperbanyak", "bermegah dengan banyaknya", "berbangga-bangga", "memperbanyak harta"]}, {"ar": "حَتَّىٰ", "ayah": [2], "makna": "sehingga", "alt": ["hingga", "sampai", "sehinggalah"]}, {"ar": "زُرۡتُمُ", "ayah": [2], "makna": "kamu (telah) menziarahi", "alt": ["kamu ziarahi", "menziarahi", "kamu masuk", "kamu mengunjungi"]}, {"ar": "ٱلۡمَقَابِرَ", "ayah": [2], "makna": "kubur-kubur", "alt": ["kubur", "kuburan", "perkuburan", "alam kubur"]}, {"ar": "كَلَّا", "ayah": [3, 4, 5], "makna": "jangan sekali-kali", "alt": ["sekali-kali tidak", "jangan", "sekali-kali jangan", "tidak sekali-kali"]}, {"ar": "سَوۡفَ", "ayah": [3, 4], "makna": "kelak", "alt": ["nanti", "akan", "kelak akan"]}, {"ar": "تَعۡلَمُونَ", "ayah": [3, 4, 5], "makna": "kamu mengetahui", "alt": ["kamu akan mengetahui", "kamu tahu", "mengetahui", "kamu ketahui"]}, {"ar": "ثُمَّ", "ayah": [4, 7, 8], "makna": "kemudian", "alt": ["lalu", "kemudian lagi", "sesudah itu"]}, {"ar": "لَوۡ", "ayah": [5], "makna": "sekiranya", "alt": ["jika", "kalau", "andainya", "seandainya"]}, {"ar": "عِلۡمَ", "ayah": [5], "makna": "pengetahuan", "alt": ["ilmu", "dengan pengetahuan", "ilmu pengetahuan"]}, {"ar": "ٱلۡيَقِينِ", "ayah": [5, 7], "makna": "keyakinan", "alt": ["yakin", "yang yakin", "pasti", "kepastian"]}, {"ar": "لَتَرَوُنَّ", "ayah": [6], "makna": "sungguh kamu akan melihat", "alt": ["kamu akan melihat", "pasti kamu melihat", "kamu benar-benar akan melihat", "melihat"]}, {"ar": "ٱلۡجَحِيمَ", "ayah": [6], "makna": "neraka Jahim", "alt": ["neraka", "jahim", "neraka jahim", "api neraka"]}, {"ar": "لَتَرَوُنَّهَا", "ayah": [7], "makna": "sungguh kamu akan melihatnya", "alt": ["kamu akan melihatnya", "pasti kamu melihatnya", "melihatnya"]}, {"ar": "عَيۡنَ", "ayah": [7], "makna": "mata (kepala)", "alt": ["mata", "penglihatan mata", "dengan mata kepala", "ain"]}, {"ar": "لَتُسۡـَٔلُنَّ", "ayah": [8], "makna": "sungguh kamu akan ditanya", "alt": ["kamu akan ditanya", "pasti kamu ditanya", "ditanya", "kamu akan disoal"]}, {"ar": "يَوۡمَئِذٍ", "ayah": [8], "makna": "pada hari itu", "alt": ["hari itu", "di hari itu", "pada ketika itu"]}, {"ar": "عَنِ", "ayah": [8], "makna": "tentang", "alt": ["mengenai", "perihal"]}, {"ar": "ٱلنَّعِيمِ", "ayah": [8], "makna": "segala nikmat", "alt": ["nikmat", "kenikmatan", "nikmat-nikmat", "kesenangan"]}], "103": [{"ar": "وَٱلۡعَصۡرِ", "ayah": [1], "makna": "demi masa", "alt": ["masa", "demi waktu", "demi zaman", "demi waktu asar"]}, {"ar": "إِنَّ", "ayah": [2], "makna": "sesungguhnya", "alt": ["sungguh", "bahawasanya", "sesungguhnya itu"]}, {"ar": "ٱلۡإِنسَٰنَ", "ayah": [2], "makna": "manusia", "alt": ["insan", "umat manusia", "manusia itu"]}, {"ar": "لَفِي", "ayah": [2], "makna": "benar-benar dalam", "alt": ["dalam", "berada dalam", "sungguh dalam", "benar-benar berada dalam"]}, {"ar": "خُسۡرٍ", "ayah": [2], "makna": "kerugian", "alt": ["rugi", "kerugian besar", "merugi"]}, {"ar": "إِلَّا", "ayah": [3], "makna": "kecuali", "alt": ["melainkan", "selain", "kecuali mereka"]}, {"ar": "ٱلَّذِينَ", "ayah": [3], "makna": "orang-orang yang", "alt": ["orang yang", "mereka yang", "yang"]}, {"ar": "ءَامَنُواْ", "ayah": [3], "makna": "telah beriman", "alt": ["beriman", "mereka beriman", "percaya"]}, {"ar": "وَعَمِلُواْ", "ayah": [3], "makna": "dan telah beramal", "alt": ["beramal", "dan beramal", "mengerjakan", "dan mengerjakan"]}, {"ar": "ٱلصَّٰلِحَٰتِ", "ayah": [3], "makna": "amal-amal soleh", "alt": ["amal soleh", "kebaikan", "amalan soleh", "kebajikan", "amal saleh"]}, {"ar": "وَتَوَاصَوۡاْ", "ayah": [3], "makna": "dan saling berpesan", "alt": ["berpesan-pesan", "saling berpesan", "dan berpesan-pesan", "saling menasihati", "dan saling menasihati"]}, {"ar": "بِٱلۡحَقِّ", "ayah": [3], "makna": "dengan kebenaran", "alt": ["kebenaran", "dengan yang benar", "yang hak", "dengan hak"]}, {"ar": "بِٱلصَّبۡرِ", "ayah": [3], "makna": "dengan kesabaran", "alt": ["kesabaran", "sabar", "dengan sabar", "bersabar"]}], "108": [{"ar": "إِنَّآ", "ayah": [1], "makna": "sesungguhnya Kami", "alt": ["kami", "sungguh kami", "bahawasanya kami"]}, {"ar": "أَعۡطَيۡنَٰكَ", "ayah": [1], "makna": "Kami telah memberimu", "alt": ["kami beri kamu", "kami berikan kepadamu", "kami kurniakan kepadamu", "kami telah mengurniakan kepadamu", "memberimu"]}, {"ar": "ٱلۡكَوۡثَرَ", "ayah": [1], "makna": "kebaikan yang banyak", "alt": ["al-kauthar", "kautsar", "nikmat yang banyak", "sungai kauthar", "telaga kauthar", "kebaikan yang melimpah"]}, {"ar": "فَصَلِّ", "ayah": [2], "makna": "maka solatlah", "alt": ["solatlah", "dirikanlah solat", "maka dirikanlah solat", "sembahyanglah", "shalatlah"]}, {"ar": "لِرَبِّكَ", "ayah": [2], "makna": "kerana Tuhanmu", "alt": ["untuk tuhanmu", "bagi tuhanmu", "kepada tuhanmu", "kerana tuhan"]}, {"ar": "وَٱنۡحَرۡ", "ayah": [2], "makna": "dan sembelihlah korban", "alt": ["sembelihlah", "dan berkorbanlah", "berkorbanlah", "dan sembelihlah"]}, {"ar": "إِنَّ", "ayah": [3], "makna": "sesungguhnya", "alt": ["sungguh", "bahawasanya", "sesungguhnya itu"]}, {"ar": "شَانِئَكَ", "ayah": [3], "makna": "pembencimu", "alt": ["orang yang membencimu", "yang membenci engkau", "pembenci engkau"]}, {"ar": "هُوَ", "ayah": [3], "makna": "dialah", "alt": ["dia", "dia itulah", "dia sendiri"]}, {"ar": "ٱلۡأَبۡتَرُ", "ayah": [3], "makna": "yang terputus", "alt": ["terputus", "terputus keturunan", "terputus zuriat", "terputus dari rahmat", "yang terputus sebutannya"]}], "109": [{"ar": "قُلۡ", "ayah": [1], "makna": "katakanlah", "alt": ["katakan", "sebutkanlah", "berkatalah"]}, {"ar": "يَٰٓأَيُّهَا", "ayah": [1], "makna": "wahai", "alt": ["hai", "wahai sekalian", "wahai orang-orang"]}, {"ar": "ٱلۡكَٰفِرُونَ", "ayah": [1], "makna": "orang-orang kafir", "alt": ["orang kafir", "kafir", "golongan kafir", "kafirun"]}, {"ar": "لَآ", "ayah": [2], "makna": "tidak", "alt": ["tidak akan", "bukan", "tak"]}, {"ar": "أَعۡبُدُ", "ayah": [2, 3, 5], "makna": "aku sembah", "alt": ["aku menyembah", "aku beribadat", "aku ibadah"]}, {"ar": "مَا", "ayah": [2, 3, 4, 5], "makna": "apa yang", "alt": ["yang", "sesuatu yang", "apa yang", "apa-apa yang"], "varian": ["مَّا", "مَآ"]}, {"ar": "تَعۡبُدُونَ", "ayah": [2], "makna": "kamu sembah", "alt": ["kamu menyembah", "kamu beribadat"]}, {"ar": "وَلَآ", "ayah": [3, 4, 5], "makna": "dan tidak (pula)", "alt": ["dan tidak", "dan bukan", "dan tidak pula", "dan tidak juga"]}, {"ar": "أَنتُمۡ", "ayah": [3, 5], "makna": "kamu (semua)", "alt": ["kamu", "kalian", "engkau semua"]}, {"ar": "عَٰبِدُونَ", "ayah": [3, 5], "makna": "penyembah-penyembah", "alt": ["penyembah kepada", "para penyembah", "orang-orang yang menyembah"]}, {"ar": "أَنَا۠", "ayah": [4], "makna": "aku", "alt": ["saya", "aku ini", "daku"]}, {"ar": "عَابِدٞ", "ayah": [4], "makna": "penyembah", "alt": ["yang menyembah", "seorang penyembah", "orang yang menyembah"]}, {"ar": "عَبَدتُّمۡ", "ayah": [4], "makna": "kamu telah sembah", "alt": ["telah kamu sembah", "kamu telah menyembah"]}, {"ar": "لَكُمۡ", "ayah": [6], "makna": "bagi kamu", "alt": ["untuk kamu", "bagimu", "untukmu"]}, {"ar": "دِينُكُمۡ", "ayah": [6], "makna": "agama kamu", "alt": ["agamamu", "ugama kamu"]}, {"ar": "وَلِيَ", "ayah": [6], "makna": "dan bagiku", "alt": ["dan untukku", "bagiku", "dan bagi aku", "untukku"]}, {"ar": "دِينِ", "ayah": [6], "makna": "agamaku", "alt": ["agama aku", "ugamaku"]}], "110": [{"ar": "إِذَا", "ayah": [1], "makna": "apabila", "alt": ["bila", "jika", "ketika"]}, {"ar": "جَآءَ", "ayah": [1], "makna": "telah datang", "alt": ["datang", "tiba", "sudah datang"]}, {"ar": "نَصۡرُ", "ayah": [1], "makna": "pertolongan", "alt": ["bantuan", "pertolongan allah", "nasr"]}, {"ar": "ٱللَّهِ", "ayah": [1, 2], "makna": "Allah", "alt": ["allah swt", "allah taala", "tuhan allah"]}, {"ar": "وَٱلۡفَتۡحُ", "ayah": [1], "makna": "dan kemenangan", "alt": ["kemenangan", "dan pembukaan", "pembukaan", "dan pembukaan makkah", "fath"]}, {"ar": "وَرَأَيۡتَ", "ayah": [2], "makna": "dan engkau melihat", "alt": ["engkau melihat", "dan kamu lihat", "dan kamu melihat", "melihat"]}, {"ar": "ٱلنَّاسَ", "ayah": [2], "makna": "manusia", "alt": ["orang ramai", "umat manusia", "orang-orang"]}, {"ar": "يَدۡخُلُونَ", "ayah": [2], "makna": "mereka masuk", "alt": ["masuk", "memasuki", "mereka memasuki"]}, {"ar": "فِي", "ayah": [2], "makna": "ke dalam", "alt": ["dalam", "di dalam", "ke"]}, {"ar": "دِينِ", "ayah": [2], "makna": "agama", "alt": ["ugama", "agama allah", "din"]}, {"ar": "أَفۡوَاجٗا", "ayah": [2], "makna": "berbondong-bondong", "alt": ["beramai-ramai", "berpusu-pusu", "berkumpulan", "berduyun-duyun", "rombongan demi rombongan"]}, {"ar": "فَسَبِّحۡ", "ayah": [3], "makna": "maka bertasbihlah", "alt": ["bertasbihlah", "sucikanlah", "maka sucikanlah", "bertasbih"]}, {"ar": "بِحَمۡدِ", "ayah": [3], "makna": "dengan memuji", "alt": ["dengan pujian", "memuji", "sambil memuji"]}, {"ar": "رَبِّكَ", "ayah": [3], "makna": "Tuhanmu", "alt": ["tuhan engkau", "tuhan", "rabbmu"]}, {"ar": "وَٱسۡتَغۡفِرۡهُ", "ayah": [3], "makna": "dan mohonlah ampun kepada-Nya", "alt": ["mohon ampun", "mintalah ampun", "beristighfarlah", "dan mintalah ampun kepadanya", "mohonlah keampunan"]}, {"ar": "إِنَّهُۥ", "ayah": [3], "makna": "sesungguhnya Dia", "alt": ["sesungguhnya dia", "sungguh dia", "bahawasanya dia"]}, {"ar": "كَانَ", "ayah": [3], "makna": "adalah (sentiasa)", "alt": ["ialah", "sentiasa", "adalah dia"]}, {"ar": "تَوَّابَۢا", "ayah": [3], "makna": "Maha Penerima taubat", "alt": ["penerima taubat", "maha penerima taubat", "yang menerima taubat", "menerima taubat"]}], "112": [{"ar": "قُلۡ", "ayah": [1], "makna": "katakanlah", "alt": ["katakan", "sebutkanlah", "berkatalah"]}, {"ar": "هُوَ", "ayah": [1], "makna": "Dialah", "alt": ["dia", "dia itu", "dia ialah"]}, {"ar": "ٱللَّهُ", "ayah": [1, 2], "makna": "Allah", "alt": ["allah swt", "allah taala", "tuhan allah"]}, {"ar": "أَحَدٌ", "ayah": [1], "makna": "Yang Maha Esa", "alt": ["maha esa", "esa", "satu", "tunggal", "yang esa"]}, {"ar": "ٱلصَّمَدُ", "ayah": [2], "makna": "tempat bergantung (segala makhluk)", "alt": ["tempat bergantung", "tempat bergantung segala makhluk", "tumpuan makhluk", "tempat meminta", "yang dituju untuk hajat", "as-samad"]}, {"ar": "لَمۡ", "ayah": [3], "makna": "tidak", "alt": ["tidak pernah", "bukan", "tak"]}, {"ar": "يَلِدۡ", "ayah": [3], "makna": "Dia beranak", "alt": ["beranak", "melahirkan", "mempunyai anak", "dia melahirkan"]}, {"ar": "وَلَمۡ", "ayah": [3, 4], "makna": "dan tidak", "alt": ["dan tidak pula", "dan bukan", "dan tak"]}, {"ar": "يُولَدۡ", "ayah": [3], "makna": "Dia diperanakkan", "alt": ["diperanakkan", "dilahirkan", "dia dilahirkan"]}, {"ar": "يَكُن", "ayah": [4], "makna": "ada", "alt": ["adalah", "wujud", "ada pun"]}, {"ar": "لَّهُۥ", "ayah": [4], "makna": "bagi-Nya", "alt": ["baginya", "untuknya", "untuk-nya"]}, {"ar": "كُفُوًا", "ayah": [4], "makna": "setara", "alt": ["setanding", "sebanding", "yang setara", "yang setanding", "serupa"]}, {"ar": "أَحَدُۢ", "ayah": [4], "makna": "seorang pun", "alt": ["sesiapa pun", "seorang", "sesuatu pun", "seorangpun"]}], "113": [{"ar": "قُلۡ", "ayah": [1], "makna": "katakanlah", "alt": ["katakan", "sebutkanlah", "berkatalah"]}, {"ar": "أَعُوذُ", "ayah": [1], "makna": "aku berlindung", "alt": ["berlindung", "aku memohon perlindungan", "aku berlindung diri"]}, {"ar": "بِرَبِّ", "ayah": [1], "makna": "dengan Tuhan", "alt": ["kepada tuhan", "tuhan", "dengan tuhan yang"]}, {"ar": "ٱلۡفَلَقِ", "ayah": [1], "makna": "waktu subuh", "alt": ["subuh", "fajar", "yang menyingsingkan subuh", "al-falaq", "cahaya subuh"]}, {"ar": "مِن", "ayah": [2], "makna": "dari", "alt": ["daripada", "dari pada", "dari segala"]}, {"ar": "شَرِّ", "ayah": [2, 3, 4, 5], "makna": "kejahatan", "alt": ["keburukan", "bahaya", "kejahatan dari"]}, {"ar": "مَا", "ayah": [2], "makna": "apa yang", "alt": ["sesuatu yang", "segala yang", "makhluk yang"]}, {"ar": "خَلَقَ", "ayah": [2], "makna": "Dia ciptakan", "alt": ["diciptakan", "dia cipta", "dijadikan", "dia jadikan"]}, {"ar": "وَمِن", "ayah": [3, 4, 5], "makna": "dan dari", "alt": ["dan daripada", "dan dari segala"]}, {"ar": "غَاسِقٍ", "ayah": [3], "makna": "malam yang gelap", "alt": ["malam", "kegelapan malam", "gelap", "malam gelap gelita"]}, {"ar": "إِذَا", "ayah": [3, 5], "makna": "apabila", "alt": ["bila", "ketika", "jika"]}, {"ar": "وَقَبَ", "ayah": [3], "makna": "telah masuk menyelubungi", "alt": ["masuk", "gelap gelita", "menyelubungi", "telah gelap", "datang"]}, {"ar": "ٱلنَّفَّٰثَٰتِ", "ayah": [4], "makna": "para penghembus (sihir)", "alt": ["penghembus", "peniup", "tukang sihir", "ahli sihir", "yang meniup", "perempuan tukang sihir"]}, {"ar": "فِي", "ayah": [4], "makna": "pada", "alt": ["di", "dalam", "kepada"]}, {"ar": "ٱلۡعُقَدِ", "ayah": [4], "makna": "simpulan-simpulan", "alt": ["simpulan", "buhul", "buhul-buhul", "ikatan-ikatan", "ikatan"]}, {"ar": "حَاسِدٍ", "ayah": [5], "makna": "orang yang dengki", "alt": ["pendengki", "yang dengki", "orang dengki", "penghasad"]}, {"ar": "حَسَدَ", "ayah": [5], "makna": "ia dengki", "alt": ["dengki", "mendengki", "dia dengki", "berdengki", "hasad"]}], "114": [{"ar": "قُلۡ", "ayah": [1], "makna": "katakanlah", "alt": ["katakan", "sebutkanlah", "berkatalah"]}, {"ar": "أَعُوذُ", "ayah": [1], "makna": "aku berlindung", "alt": ["berlindung", "aku memohon perlindungan", "aku berlindung diri"]}, {"ar": "بِرَبِّ", "ayah": [1], "makna": "dengan Tuhan", "alt": ["kepada tuhan", "tuhan", "dengan tuhan yang"]}, {"ar": "ٱلنَّاسِ", "ayah": [1, 2, 3, 5], "makna": "manusia", "alt": ["sekalian manusia", "umat manusia", "insan", "orang ramai"]}, {"ar": "مَلِكِ", "ayah": [2], "makna": "Raja", "alt": ["yang menguasai", "pemerintah", "raja yang memerintah"]}, {"ar": "إِلَٰهِ", "ayah": [3], "makna": "Sembahan", "alt": ["tuhan yang disembah", "ilah", "yang disembah", "sesembahan"]}, {"ar": "مِن", "ayah": [4], "makna": "dari", "alt": ["daripada", "dari pada", "dari segala"], "avoid": ["مِنَ"]}, {"ar": "شَرِّ", "ayah": [4], "makna": "kejahatan", "alt": ["keburukan", "bahaya", "kejahatan dari"]}, {"ar": "ٱلۡوَسۡوَاسِ", "ayah": [4], "makna": "pembisik (syaitan)", "alt": ["pembisik", "penghasut", "bisikan", "yang membisikkan", "waswas"]}, {"ar": "ٱلۡخَنَّاسِ", "ayah": [4], "makna": "yang bersembunyi", "alt": ["bersembunyi", "yang menyelinap", "yang mundur", "yang lari bersembunyi", "khannas"]}, {"ar": "ٱلَّذِي", "ayah": [5], "makna": "yang", "alt": ["iaitu yang", "dia yang", "yang mana"]}, {"ar": "يُوَسۡوِسُ", "ayah": [5], "makna": "membisikkan", "alt": ["membisik", "berbisik", "menghasut", "mewaswaskan"]}, {"ar": "فِي", "ayah": [5], "makna": "ke dalam", "alt": ["dalam", "di dalam", "pada"]}, {"ar": "صُدُورِ", "ayah": [5], "makna": "dada-dada", "alt": ["dada", "hati", "jiwa"]}, {"ar": "مِنَ", "ayah": [6], "makna": "dari kalangan", "alt": ["daripada kalangan"], "avoid": ["مِن"]}, {"ar": "ٱلۡجِنَّةِ", "ayah": [6], "makna": "jin", "alt": ["jin-jin", "golongan jin", "bangsa jin", "makhluk jin"]}, {"ar": "وَٱلنَّاسِ", "ayah": [6], "makna": "dan manusia", "alt": ["dan umat manusia", "dan insan"]}]};
+const NAHU = {"jenis": {"1": [{"ar": "ٱللَّهِ", "ayah": 1, "jenis": "isim", "nota": "Lafz al-Jalalah — nama khas bagi Allah."}, {"ar": "ٱلرَّحۡمَٰنِ", "ayah": 1, "jenis": "isim", "nota": "Ada ال dan bertanda kasrah — nama/sifat Allah."}, {"ar": "ٱلۡحَمۡدُ", "ayah": 2, "jenis": "isim", "nota": "Ada ال; masdar bermaksud pujian."}, {"ar": "رَبِّ", "ayah": 2, "jenis": "isim", "nota": "Nama (Tuhan); menjadi mudhaf kepada ٱلۡعَٰلَمِينَ."}, {"ar": "ٱلۡعَٰلَمِينَ", "ayah": 2, "jenis": "isim", "nota": "Ada ال; kata nama (sekalian alam)."}, {"ar": "مَٰلِكِ", "ayah": 4, "jenis": "isim", "nota": "Isim fa'il — yang menguasai; menerima idhafah."}, {"ar": "يَوۡمِ", "ayah": 4, "jenis": "isim", "nota": "Kata nama masa (hari)."}, {"ar": "إِيَّاكَ", "ayah": 5, "jenis": "isim", "nota": "Dhamir berasingan (munfasil) — dhamir ialah isim."}, {"ar": "نَعۡبُدُ", "ayah": 5, "jenis": "fiil", "nota": "Fe'il mudhari' — perbuatan sedang/akan berlaku (kami sembah)."}, {"ar": "ٱهۡدِنَا", "ayah": 6, "jenis": "fiil", "nota": "Fe'il amar (permohonan) + dhamir نَا."}, {"ar": "أَنۡعَمۡتَ", "ayah": 7, "jenis": "fiil", "nota": "Fe'il madhi + dhamir تَ (Engkau beri nikmat)."}, {"ar": "ٱلَّذِينَ", "ayah": 7, "jenis": "isim", "nota": "Isim maushul — orang-orang yang."}, {"ar": "ٱلۡمَغۡضُوبِ", "ayah": 7, "jenis": "isim", "nota": "Isim maf'ul, ada ال — yang dimurkai."}], "2": [{"ar": "ذَٰلِكَ", "ayah": 2, "jenis": "isim", "nota": "Isim isyarah (kata tunjuk) — itu."}, {"ar": "ٱلۡكِتَٰبُ", "ayah": 2, "jenis": "isim", "nota": "Ada ال; kata nama (Kitab)."}, {"ar": "لَا", "ayah": 2, "jenis": "harf", "nota": "Haraf nafi (lā nafiyah lil-jins)."}, {"ar": "رَيۡبَ", "ayah": 2, "jenis": "isim", "nota": "Kata nama (keraguan); isim bagi لَا."}, {"ar": "هُدٗى", "ayah": 2, "jenis": "isim", "nota": "Bertanwin — kata nama (petunjuk)."}, {"ar": "ٱلَّذِينَ", "ayah": 3, "jenis": "isim", "nota": "Isim maushul — orang-orang yang."}, {"ar": "يُؤۡمِنُونَ", "ayah": 3, "jenis": "fiil", "nota": "Fe'il mudhari' + wau jamak (mereka beriman)."}, {"ar": "رَزَقۡنَٰهُمۡ", "ayah": 3, "jenis": "fiil", "nota": "Fe'il madhi + dhamir (Kami rezekikan mereka)."}, {"ar": "أُنزِلَ", "ayah": 4, "jenis": "fiil", "nota": "Fe'il madhi mabni majhul (telah diturunkan)."}, {"ar": "مِن", "ayah": 4, "jenis": "harf", "nota": "Haraf jar — dari."}, {"ar": "قَبۡلِكَ", "ayah": 4, "jenis": "isim", "nota": "Isim zarf (sebelum) + dhamir كَ."}, {"ar": "هُمۡ", "ayah": 4, "jenis": "isim", "nota": "Dhamir berasingan (mereka) — mubtada'."}, {"ar": "أُوْلَٰٓئِكَ", "ayah": 5, "jenis": "isim", "nota": "Isim isyarah jamak — mereka itu."}, {"ar": "عَلَىٰ", "ayah": 5, "jenis": "harf", "nota": "Haraf jar — di atas."}, {"ar": "ٱلۡمُفۡلِحُونَ", "ayah": 5, "jenis": "isim", "nota": "Isim fa'il jamak, ada ال — orang berjaya."}], "102": [{"ar": "أَلۡهَىٰكُمُ", "ayah": 1, "jenis": "fiil", "nota": "Fe'il madhi + dhamir كُمۡ (telah melalaikan kamu)."}, {"ar": "ٱلتَّكَاثُرُ", "ayah": 1, "jenis": "isim", "nota": "Ada ال; masdar — bermegah-megah."}, {"ar": "حَتَّىٰ", "ayah": 2, "jenis": "harf", "nota": "Haraf — hingga."}, {"ar": "زُرۡتُمُ", "ayah": 2, "jenis": "fiil", "nota": "Fe'il madhi + dhamir تُمۡ (kamu menziarahi)."}, {"ar": "ٱلۡمَقَابِرَ", "ayah": 2, "jenis": "isim", "nota": "Ada ال; kata nama jamak (kubur-kubur)."}, {"ar": "كَلَّا", "ayah": 3, "jenis": "harf", "nota": "Haraf ردع (tegahan) — sekali-kali tidak!"}, {"ar": "سَوۡفَ", "ayah": 3, "jenis": "harf", "nota": "Haraf istiqbal — akan (masa depan)."}, {"ar": "تَعۡلَمُونَ", "ayah": 3, "jenis": "fiil", "nota": "Fe'il mudhari' + wau jamak (kamu akan tahu)."}, {"ar": "ثُمَّ", "ayah": 4, "jenis": "harf", "nota": "Haraf 'atf — kemudian."}, {"ar": "لَوۡ", "ayah": 5, "jenis": "harf", "nota": "Haraf syarat — kalaulah."}, {"ar": "عِلۡمَ", "ayah": 5, "jenis": "isim", "nota": "Masdar — pengetahuan."}, {"ar": "ٱلۡجَحِيمَ", "ayah": 6, "jenis": "isim", "nota": "Ada ال; nama neraka Jahim."}, {"ar": "يَوۡمَئِذٍ", "ayah": 8, "jenis": "isim", "nota": "Isim zarf masa — pada hari itu."}, {"ar": "عَنِ", "ayah": 8, "jenis": "harf", "nota": "Haraf jar — tentang."}], "103": [{"ar": "إِنَّ", "ayah": 2, "jenis": "harf", "nota": "Haraf taukid — sesungguhnya."}, {"ar": "ٱلۡإِنسَٰنَ", "ayah": 2, "jenis": "isim", "nota": "Ada ال; kata nama (manusia)."}, {"ar": "خُسۡرٍ", "ayah": 2, "jenis": "isim", "nota": "Bertanwin dan majrur — kerugian."}, {"ar": "إِلَّا", "ayah": 3, "jenis": "harf", "nota": "Haraf istithna' — kecuali."}, {"ar": "ٱلَّذِينَ", "ayah": 3, "jenis": "isim", "nota": "Isim maushul — orang-orang yang."}, {"ar": "ءَامَنُواْ", "ayah": 3, "jenis": "fiil", "nota": "Fe'il madhi + wau jamak (mereka beriman)."}, {"ar": "ٱلصَّٰلِحَٰتِ", "ayah": 3, "jenis": "isim", "nota": "Ada ال; jamak muannath — amal-amal soleh."}], "108": [{"ar": "أَعۡطَيۡنَٰكَ", "ayah": 1, "jenis": "fiil", "nota": "Fe'il madhi + dhamir (Kami beri engkau)."}, {"ar": "ٱلۡكَوۡثَرَ", "ayah": 1, "jenis": "isim", "nota": "Ada ال; nama nikmat al-Kauthar."}, {"ar": "إِنَّ", "ayah": 3, "jenis": "harf", "nota": "Haraf taukid — sesungguhnya."}, {"ar": "شَانِئَكَ", "ayah": 3, "jenis": "isim", "nota": "Isim fa'il (pembenci) + dhamir كَ."}, {"ar": "ٱلۡأَبۡتَرُ", "ayah": 3, "jenis": "isim", "nota": "Ada ال; sifat — yang terputus."}], "109": [{"ar": "قُلۡ", "ayah": 1, "jenis": "fiil", "nota": "Fe'il amar — katakanlah."}, {"ar": "ٱلۡكَٰفِرُونَ", "ayah": 1, "jenis": "isim", "nota": "Ada ال; isim fa'il jamak — orang kafir."}, {"ar": "لَآ", "ayah": 2, "jenis": "harf", "nota": "Haraf nafi — tidak."}, {"ar": "أَعۡبُدُ", "ayah": 2, "jenis": "fiil", "nota": "Fe'il mudhari' (aku menyembah)."}, {"ar": "تَعۡبُدُونَ", "ayah": 2, "jenis": "fiil", "nota": "Fe'il mudhari' + wau jamak (kamu sembah)."}, {"ar": "أَنتُمۡ", "ayah": 3, "jenis": "isim", "nota": "Dhamir berasingan — kamu semua."}, {"ar": "عَٰبِدُونَ", "ayah": 3, "jenis": "isim", "nota": "Isim fa'il jamak — penyembah-penyembah."}, {"ar": "أَنَا۠", "ayah": 4, "jenis": "isim", "nota": "Dhamir berasingan — aku."}, {"ar": "عَابِدٞ", "ayah": 4, "jenis": "isim", "nota": "Bertanwin; isim fa'il — penyembah."}, {"ar": "عَبَدتُّمۡ", "ayah": 4, "jenis": "fiil", "nota": "Fe'il madhi + dhamir تُمۡ (kamu sembah)."}, {"ar": "دِينُكُمۡ", "ayah": 6, "jenis": "isim", "nota": "Kata nama (agama) + dhamir كُمۡ."}, {"ar": "دِينِ", "ayah": 6, "jenis": "isim", "nota": "Kata nama — agama(ku)."}], "110": [{"ar": "إِذَا", "ayah": 1, "jenis": "isim", "nota": "Isim zarf masa (apabila) — bukan haraf."}, {"ar": "جَآءَ", "ayah": 1, "jenis": "fiil", "nota": "Fe'il madhi — telah datang."}, {"ar": "نَصۡرُ", "ayah": 1, "jenis": "isim", "nota": "Kata nama (pertolongan); faa'il."}, {"ar": "ٱللَّهِ", "ayah": 1, "jenis": "isim", "nota": "Lafz al-Jalalah — nama khas Allah."}, {"ar": "ٱلنَّاسَ", "ayah": 2, "jenis": "isim", "nota": "Ada ال; kata nama (manusia)."}, {"ar": "يَدۡخُلُونَ", "ayah": 2, "jenis": "fiil", "nota": "Fe'il mudhari' + wau jamak (mereka masuk)."}, {"ar": "فِي", "ayah": 2, "jenis": "harf", "nota": "Haraf jar — dalam."}, {"ar": "دِينِ", "ayah": 2, "jenis": "isim", "nota": "Kata nama (agama), majrur."}, {"ar": "أَفۡوَاجٗا", "ayah": 2, "jenis": "isim", "nota": "Bertanwin — berbondong-bondong."}, {"ar": "كَانَ", "ayah": 3, "jenis": "fiil", "nota": "Fe'il madhi naqis — adalah."}, {"ar": "تَوَّابَۢا", "ayah": 3, "jenis": "isim", "nota": "Bertanwin; sighah mubalaghah — Maha Penerima taubat."}], "112": [{"ar": "قُلۡ", "ayah": 1, "jenis": "fiil", "nota": "Fe'il amar — katakanlah."}, {"ar": "هُوَ", "ayah": 1, "jenis": "isim", "nota": "Dhamir berasingan — Dia; mubtada'."}, {"ar": "ٱللَّهُ", "ayah": 1, "jenis": "isim", "nota": "Lafz al-Jalalah — nama khas Allah."}, {"ar": "أَحَدٌ", "ayah": 1, "jenis": "isim", "nota": "Bertanwin — Yang Maha Esa."}, {"ar": "ٱلصَّمَدُ", "ayah": 2, "jenis": "isim", "nota": "Ada ال — tempat bergantung."}, {"ar": "لَمۡ", "ayah": 3, "jenis": "harf", "nota": "Haraf nafi dan jazm — tidak."}, {"ar": "يَلِدۡ", "ayah": 3, "jenis": "fiil", "nota": "Fe'il mudhari' majzum oleh لَمۡ — لَمۡ يَلِدۡ: Dia tidak beranak."}, {"ar": "يَكُن", "ayah": 4, "jenis": "fiil", "nota": "Fe'il mudhari' naqis majzum (ada)."}, {"ar": "كُفُوًا", "ayah": 4, "jenis": "isim", "nota": "Bertanwin — setara."}, {"ar": "أَحَدُۢ", "ayah": 4, "jenis": "isim", "nota": "Bertanwin — seorang pun."}], "113": [{"ar": "قُلۡ", "ayah": 1, "jenis": "fiil", "nota": "Fe'il amar — katakanlah."}, {"ar": "أَعُوذُ", "ayah": 1, "jenis": "fiil", "nota": "Fe'il mudhari' — aku berlindung."}, {"ar": "ٱلۡفَلَقِ", "ayah": 1, "jenis": "isim", "nota": "Ada ال — waktu subuh."}, {"ar": "مِن", "ayah": 2, "jenis": "harf", "nota": "Haraf jar — dari."}, {"ar": "شَرِّ", "ayah": 2, "jenis": "isim", "nota": "Kata nama (kejahatan), majrur."}, {"ar": "خَلَقَ", "ayah": 2, "jenis": "fiil", "nota": "Fe'il madhi — Dia ciptakan."}, {"ar": "غَاسِقٍ", "ayah": 3, "jenis": "isim", "nota": "Bertanwin; isim fa'il — malam gelap."}, {"ar": "إِذَا", "ayah": 3, "jenis": "isim", "nota": "Isim zarf masa (apabila) — bukan haraf."}, {"ar": "وَقَبَ", "ayah": 3, "jenis": "fiil", "nota": "Fe'il madhi — telah masuk (gelapnya)."}, {"ar": "ٱلنَّفَّٰثَٰتِ", "ayah": 4, "jenis": "isim", "nota": "Ada ال; jamak — peniup-peniup."}, {"ar": "فِي", "ayah": 4, "jenis": "harf", "nota": "Haraf jar — pada."}, {"ar": "حَاسِدٍ", "ayah": 5, "jenis": "isim", "nota": "Bertanwin; isim fa'il — pendengki."}, {"ar": "حَسَدَ", "ayah": 5, "jenis": "fiil", "nota": "Fe'il madhi — dia dengki."}], "114": [{"ar": "قُلۡ", "ayah": 1, "jenis": "fiil", "nota": "Fe'il amar — katakanlah."}, {"ar": "أَعُوذُ", "ayah": 1, "jenis": "fiil", "nota": "Fe'il mudhari' — aku berlindung."}, {"ar": "ٱلنَّاسِ", "ayah": 1, "jenis": "isim", "nota": "Ada ال; kata nama (manusia)."}, {"ar": "مَلِكِ", "ayah": 2, "jenis": "isim", "nota": "Kata nama — Raja."}, {"ar": "إِلَٰهِ", "ayah": 3, "jenis": "isim", "nota": "Kata nama — Tuhan sembahan."}, {"ar": "مِن", "ayah": 4, "jenis": "harf", "nota": "Haraf jar — dari."}, {"ar": "ٱلۡوَسۡوَاسِ", "ayah": 4, "jenis": "isim", "nota": "Ada ال — pembisik."}, {"ar": "ٱلۡخَنَّاسِ", "ayah": 4, "jenis": "isim", "nota": "Ada ال; sighah mubalaghah — yang bersembunyi."}, {"ar": "ٱلَّذِي", "ayah": 5, "jenis": "isim", "nota": "Isim maushul — yang."}, {"ar": "يُوَسۡوِسُ", "ayah": 5, "jenis": "fiil", "nota": "Fe'il mudhari' — membisikkan."}, {"ar": "فِي", "ayah": 5, "jenis": "harf", "nota": "Haraf jar — dalam."}, {"ar": "صُدُورِ", "ayah": 5, "jenis": "isim", "nota": "Kata nama jamak — dada-dada."}, {"ar": "ٱلۡجِنَّةِ", "ayah": 6, "jenis": "isim", "nota": "Ada ال — golongan jin."}]}, "jumlah": {"1": [{"ayah": 2, "teks": "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ", "jenis": "ismiyah", "nota": "Dimulakan dengan isim (mubtada' ٱلۡحَمۡدُ)."}, {"ayah": 5, "teks": "إِيَّاكَ نَعۡبُدُ", "jenis": "filiyah", "nota": "Objek إِيَّاكَ didahulukan; asasnya fe'il نَعۡبُدُ."}, {"ayah": 5, "teks": "وَإِيَّاكَ نَسۡتَعِينُ", "jenis": "filiyah", "nota": "Objek didahulukan; asasnya fe'il نَسۡتَعِينُ."}, {"ayah": 6, "teks": "ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il amar ٱهۡدِنَا."}, {"ayah": 7, "teks": "أَنۡعَمۡتَ عَلَيۡهِمۡ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il madhi أَنۡعَمۡتَ."}], "2": [{"ayah": 2, "teks": "لَا رَيۡبَ فِيهِ", "jenis": "ismiyah", "nota": "لَا nafiyah lil-jins seperti إِنَّ; isimnya رَيۡبَ."}, {"ayah": 3, "teks": "يُؤۡمِنُونَ بِٱلۡغَيۡبِ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il mudhari' يُؤۡمِنُونَ."}, {"ayah": 3, "teks": "وَيُقِيمُونَ ٱلصَّلَوٰةَ", "jenis": "filiyah", "nota": "Selepas wau 'atf, dimulakan fe'il يُقِيمُونَ."}, {"ayah": 4, "teks": "هُمۡ يُوقِنُونَ", "jenis": "ismiyah", "nota": "Dimulakan dengan isim (mubtada' هُمۡ); khabarnya jumlah fi'liyah."}, {"ayah": 5, "teks": "أُوْلَٰٓئِكَ عَلَىٰ هُدٗى مِّن رَّبِّهِمۡ", "jenis": "ismiyah", "nota": "Dimulakan dengan isim isyarah أُوْلَٰٓئِكَ (mubtada')."}, {"ayah": 5, "teks": "وَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ", "jenis": "ismiyah", "nota": "Mubtada' أُوْلَٰٓئِكَ, khabar ٱلۡمُفۡلِحُونَ; هُمُ ialah dhamir fasl (pemisah)."}], "102": [{"ayah": 1, "teks": "أَلۡهَىٰكُمُ ٱلتَّكَاثُرُ", "jenis": "filiyah", "nota": "Dimulakan fe'il madhi; faa'il ٱلتَّكَاثُرُ."}, {"ayah": 2, "teks": "زُرۡتُمُ ٱلۡمَقَابِرَ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il madhi زُرۡتُمُ."}, {"ayah": 3, "teks": "سَوۡفَ تَعۡلَمُونَ", "jenis": "filiyah", "nota": "Haraf سَوۡفَ tidak mengubah jenis; asasnya fe'il."}, {"ayah": 6, "teks": "لَتَرَوُنَّ ٱلۡجَحِيمَ", "jenis": "filiyah", "nota": "Lam qasam di depan; asasnya fe'il mudhari' تَرَوُنَّ."}, {"ayah": 8, "teks": "لَتُسۡـَٔلُنَّ يَوۡمَئِذٍ عَنِ ٱلنَّعِيمِ", "jenis": "filiyah", "nota": "Asasnya fe'il mudhari' majhul تُسۡـَٔلُنَّ."}], "103": [{"ayah": 2, "teks": "إِنَّ ٱلۡإِنسَٰنَ لَفِي خُسۡرٍ", "jenis": "ismiyah", "nota": "Ayat إِنَّ: asalnya mubtada' ٱلۡإِنسَٰنَ dan khabar."}, {"ayah": 3, "teks": "وَعَمِلُواْ ٱلصَّٰلِحَٰتِ", "jenis": "filiyah", "nota": "Selepas wau 'atf, dimulakan fe'il madhi عَمِلُواْ."}, {"ayah": 3, "teks": "وَتَوَاصَوۡاْ بِٱلۡحَقِّ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il madhi تَوَاصَوۡاْ."}], "108": [{"ayah": 1, "teks": "إِنَّآ أَعۡطَيۡنَٰكَ ٱلۡكَوۡثَرَ", "jenis": "ismiyah", "nota": "Ayat إِنَّ: isimnya نَا, khabarnya jumlah أَعۡطَيۡنَٰكَ."}, {"ayah": 2, "teks": "فَصَلِّ لِرَبِّكَ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il amar صَلِّ."}, {"ayah": 3, "teks": "إِنَّ شَانِئَكَ هُوَ ٱلۡأَبۡتَرُ", "jenis": "ismiyah", "nota": "Ayat إِنَّ: isimnya شَانِئَكَ, khabarnya ٱلۡأَبۡتَرُ; هُوَ ialah dhamir fasl (pemisah)."}], "109": [{"ayah": 2, "teks": "لَآ أَعۡبُدُ مَا تَعۡبُدُونَ", "jenis": "filiyah", "nota": "Haraf nafi لَآ tidak mengubah jenis; asasnya fe'il أَعۡبُدُ."}, {"ayah": 3, "teks": "وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ", "jenis": "ismiyah", "nota": "Mubtada' أَنتُمۡ, khabar عَٰبِدُونَ."}, {"ayah": 4, "teks": "وَلَآ أَنَا۠ عَابِدٞ مَّا عَبَدتُّمۡ", "jenis": "ismiyah", "nota": "Mubtada' أَنَا۠, khabar عَابِدٞ."}], "110": [{"ayah": 1, "teks": "جَآءَ نَصۡرُ ٱللَّهِ وَٱلۡفَتۡحُ", "jenis": "filiyah", "nota": "Dimulakan fe'il madhi جَآءَ; faa'il نَصۡرُ."}, {"ayah": 2, "teks": "وَرَأَيۡتَ ٱلنَّاسَ يَدۡخُلُونَ فِي دِينِ ٱللَّهِ أَفۡوَاجٗا", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il madhi رَأَيۡتَ."}, {"ayah": 3, "teks": "فَسَبِّحۡ بِحَمۡدِ رَبِّكَ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il amar سَبِّحۡ."}, {"ayah": 3, "teks": "إِنَّهُۥ كَانَ تَوَّابَۢا", "jenis": "ismiyah", "nota": "Ayat إِنَّ: isimnya هُ; khabarnya jumlah كَانَ تَوَّابَۢا."}], "112": [{"ayah": 1, "teks": "هُوَ ٱللَّهُ أَحَدٌ", "jenis": "ismiyah", "nota": "Dimulakan dengan isim (mubtada' هُوَ)."}, {"ayah": 2, "teks": "ٱللَّهُ ٱلصَّمَدُ", "jenis": "ismiyah", "nota": "Mubtada' ٱللَّهُ, khabar ٱلصَّمَدُ."}, {"ayah": 3, "teks": "لَمۡ يَلِدۡ", "jenis": "filiyah", "nota": "Haraf لَمۡ + fe'il mudhari' يَلِدۡ."}, {"ayah": 3, "teks": "وَلَمۡ يُولَدۡ", "jenis": "filiyah", "nota": "Haraf لَمۡ + fe'il mudhari' majhul يُولَدۡ."}, {"ayah": 4, "teks": "وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ", "jenis": "filiyah", "nota": "Dimulakan fe'il naqis يَكُن (selepas لَمۡ)."}], "113": [{"ayah": 1, "teks": "أَعُوذُ بِرَبِّ ٱلۡفَلَقِ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il mudhari' أَعُوذُ."}, {"ayah": 3, "teks": "وَقَبَ", "jenis": "filiyah", "nota": "Fe'il madhi + faa'il tersembunyi (هُوَ)."}, {"ayah": 5, "teks": "حَسَدَ", "jenis": "filiyah", "nota": "Fe'il madhi + faa'il tersembunyi (هُوَ)."}], "114": [{"ayah": 1, "teks": "أَعُوذُ بِرَبِّ ٱلنَّاسِ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il mudhari' أَعُوذُ."}, {"ayah": 5, "teks": "يُوَسۡوِسُ فِي صُدُورِ ٱلنَّاسِ", "jenis": "filiyah", "nota": "Dimulakan dengan fe'il mudhari' يُوَسۡوِسُ."}]}, "fiil": {"1": [{"ar": "نَعۡبُدُ", "ayah": 5, "fiil": "mudhari", "fail": "نَحۡنُ (kami) — tersembunyi", "fail_salah": ["إِيَّاكَ (Engkau) — dhamir berasingan", "أَنتَ (Engkau) — tersembunyi", "أَنَا (aku) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' bermula nun; faa'il نَحۡنُ tersembunyi."}, {"ar": "نَسۡتَعِينُ", "ayah": 5, "fiil": "mudhari", "fail": "نَحۡنُ (kami) — tersembunyi", "fail_salah": ["إِيَّاكَ (Engkau) — dhamir berasingan", "أَنتَ (Engkau) — tersembunyi", "أَنَا (aku) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' bermula nun; faa'il نَحۡنُ tersembunyi."}, {"ar": "ٱهۡدِنَا", "ayah": 6, "fiil": "amar", "fail": "أَنتَ (Engkau) — tersembunyi", "fail_salah": ["نَا (kami) — dhamir bersambung", "نَحۡنُ (kami) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il amar (doa); نَا ialah maf'ul bih, bukan faa'il."}, {"ar": "أَنۡعَمۡتَ", "ayah": 7, "fiil": "madhi", "fail": "تَ (Engkau) — dhamir bersambung", "fail_salah": ["هِمۡ (mereka) — dhamir bersambung", "ٱلَّذِينَ (orang-orang yang) — isim maushul", "أَنَا (aku) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il madhi; faa'il ta' bersambung (تَ)."}], "2": [{"ar": "يُؤۡمِنُونَ", "ayah": 3, "fiil": "mudhari", "fail": "وَاو (mereka) — dhamir bersambung", "fail_salah": ["هُمۡ (mereka) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' + wau jamak sebagai faa'il."}, {"ar": "وَيُقِيمُونَ", "ayah": 3, "fiil": "mudhari", "fail": "وَاو (mereka) — dhamir bersambung", "fail_salah": ["هُمۡ (mereka) — tersembunyi", "ٱلصَّلَوٰةَ (solat) — isim zahir", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' + wau jamak; ٱلصَّلَوٰةَ ialah maf'ul bih."}, {"ar": "رَزَقۡنَٰهُمۡ", "ayah": 3, "fiil": "madhi", "fail": "نَا (Kami) — dhamir bersambung", "fail_salah": ["هُمۡ (mereka) — dhamir bersambung", "هُوَ (Dia/ia) — tersembunyi", "وَاو (mereka) — dhamir bersambung"], "tanya_fail": true, "nota": "Faa'il نَا (Kami); هُمۡ ialah maf'ul bih."}, {"ar": "يُنفِقُونَ", "ayah": 3, "fiil": "mudhari", "fail": "وَاو (mereka) — dhamir bersambung", "fail_salah": ["هُمۡ (mereka) — tersembunyi", "نَحۡنُ (kami) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' + wau jamak sebagai faa'il."}, {"ar": "أُنزِلَ", "ayah": 4, "fiil": "madhi", "fail": "—", "fail_salah": [], "tanya_fail": false, "nota": "Fe'il madhi mabni majhul — ada naib faa'il."}, {"ar": "يُوقِنُونَ", "ayah": 4, "fiil": "mudhari", "fail": "وَاو (mereka) — dhamir bersambung", "fail_salah": ["هُمۡ (mereka) — dhamir berasingan", "هُوَ (Dia/ia) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Faa'il wau jamak; هُمۡ sebelumnya ialah mubtada'."}], "102": [{"ar": "أَلۡهَىٰكُمُ", "ayah": 1, "fiil": "madhi", "fail": "ٱلتَّكَاثُرُ (bermegah-megah) — isim zahir", "fail_salah": ["كُمۡ (kamu semua) — dhamir bersambung", "هُوَ (Dia/ia) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Faa'il ٱلتَّكَاثُرُ di belakang; كُمۡ ialah maf'ul bih."}, {"ar": "زُرۡتُمُ", "ayah": 2, "fiil": "madhi", "fail": "تُمۡ (kamu semua) — dhamir bersambung", "fail_salah": ["ٱلۡمَقَابِرَ (kubur-kubur) — isim zahir", "أَنتُمۡ (kamu semua) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il madhi; faa'il تُمۡ bersambung."}, {"ar": "تَعۡلَمُونَ", "ayah": 3, "fiil": "mudhari", "fail": "وَاو (kamu semua) — dhamir bersambung", "fail_salah": ["أَنتُمۡ (kamu semua) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' + wau jamak sebagai faa'il."}, {"ar": "لَتَرَوُنَّ", "ayah": 6, "fiil": "mudhari", "fail": "وَاو (kamu semua) — dhamir bersambung", "fail_salah": ["ٱلۡجَحِيمَ (neraka Jahim) — isim zahir", "أَنتُمۡ (kamu semua) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Lam qasam + mudhari' + nun taukid; wau jamak ialah faa'il."}, {"ar": "لَتَرَوُنَّهَا", "ayah": 7, "fiil": "mudhari", "fail": "وَاو (kamu semua) — dhamir bersambung", "fail_salah": ["هَا (ia/neraka) — dhamir bersambung", "أَنتُمۡ (kamu semua) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Wau jamak faa'il; هَا ialah maf'ul bih."}, {"ar": "لَتُسۡـَٔلُنَّ", "ayah": 8, "fiil": "mudhari", "fail": "—", "fail_salah": [], "tanya_fail": false, "nota": "Mudhari' mabni majhul — ada naib faa'il."}], "103": [{"ar": "ءَامَنُواْ", "ayah": 3, "fiil": "madhi", "fail": "وَاو (mereka) — dhamir bersambung", "fail_salah": ["هُمۡ (mereka) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il madhi + wau jamak sebagai faa'il."}, {"ar": "وَعَمِلُواْ", "ayah": 3, "fiil": "madhi", "fail": "وَاو (mereka) — dhamir bersambung", "fail_salah": ["ٱلصَّٰلِحَٰتِ (amal soleh) — isim zahir", "هُمۡ (mereka) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Wau jamak faa'il; ٱلصَّٰلِحَٰتِ ialah maf'ul bih."}, {"ar": "وَتَوَاصَوۡاْ", "ayah": 3, "fiil": "madhi", "fail": "وَاو (mereka) — dhamir bersambung", "fail_salah": ["ٱلۡحَقِّ (kebenaran) — isim zahir", "هُمۡ (mereka) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il madhi + wau jamak sebagai faa'il."}], "108": [{"ar": "أَعۡطَيۡنَٰكَ", "ayah": 1, "fiil": "madhi", "fail": "نَا (Kami) — dhamir bersambung", "fail_salah": ["كَ (engkau) — dhamir bersambung", "ٱلۡكَوۡثَرَ (al-Kauthar) — isim zahir", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Faa'il نَا (Kami); كَ dan ٱلۡكَوۡثَرَ ialah maf'ul bih."}, {"ar": "فَصَلِّ", "ayah": 2, "fiil": "amar", "fail": "أَنتَ (engkau) — tersembunyi", "fail_salah": ["رَبِّكَ (Tuhanmu) — isim zahir", "هُوَ (Dia/ia) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il amar; faa'il أَنتَ tersembunyi."}, {"ar": "وَٱنۡحَرۡ", "ayah": 2, "fiil": "amar", "fail": "أَنتَ (engkau) — tersembunyi", "fail_salah": ["رَبِّكَ (Tuhanmu) — isim zahir", "هُوَ (Dia/ia) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il amar; faa'il أَنتَ tersembunyi."}], "109": [{"ar": "قُلۡ", "ayah": 1, "fiil": "amar", "fail": "أَنتَ (engkau) — tersembunyi", "fail_salah": ["هُوَ (Dia/ia) — tersembunyi", "أَنَا (aku) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il amar; faa'il أَنتَ tersembunyi."}, {"ar": "أَعۡبُدُ", "ayah": 2, "fiil": "mudhari", "fail": "أَنَا (aku) — tersembunyi", "fail_salah": ["نَحۡنُ (kami) — tersembunyi", "أَنتَ (engkau) — tersembunyi", "أَنتُمۡ (kamu semua) — dhamir berasingan"], "tanya_fail": true, "nota": "Mudhari' bermula hamzah; faa'il أَنَا tersembunyi."}, {"ar": "تَعۡبُدُونَ", "ayah": 2, "fiil": "mudhari", "fail": "وَاو (kamu semua) — dhamir bersambung", "fail_salah": ["أَنتُمۡ (kamu semua) — tersembunyi", "أَنَا (aku) — tersembunyi", "هُمۡ (mereka) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' + wau jamak sebagai faa'il."}, {"ar": "عَبَدتُّمۡ", "ayah": 4, "fiil": "madhi", "fail": "تُمۡ (kamu semua) — dhamir bersambung", "fail_salah": ["أَنتُمۡ (kamu semua) — tersembunyi", "أَنَا (aku) — tersembunyi", "هُمۡ (mereka) — dhamir bersambung"], "tanya_fail": true, "nota": "Fe'il madhi; faa'il تُمۡ bersambung."}], "110": [{"ar": "جَآءَ", "ayah": 1, "fiil": "madhi", "fail": "نَصۡرُ (pertolongan) — isim zahir", "fail_salah": ["ٱللَّهِ (Allah) — isim zahir", "هُوَ (Dia/ia) — tersembunyi", "أَنتَ (engkau) — tersembunyi"], "tanya_fail": true, "nota": "Faa'il نَصۡرُ; ٱللَّهِ ialah mudhaf ilaih."}, {"ar": "وَرَأَيۡتَ", "ayah": 2, "fiil": "madhi", "fail": "تَ (engkau) — dhamir bersambung", "fail_salah": ["ٱلنَّاسَ (manusia) — isim zahir", "أَنَا (aku) — tersembunyi", "هُوَ (Dia/ia) — tersembunyi"], "tanya_fail": true, "nota": "Faa'il تَ; ٱلنَّاسَ ialah maf'ul bih."}, {"ar": "يَدۡخُلُونَ", "ayah": 2, "fiil": "mudhari", "fail": "وَاو (mereka) — dhamir bersambung", "fail_salah": ["أَفۡوَاجٗا (berbondong-bondong) — isim zahir", "هُوَ (Dia/ia) — tersembunyi", "تَ (engkau) — dhamir bersambung"], "tanya_fail": true, "nota": "Mudhari' + wau jamak sebagai faa'il."}, {"ar": "فَسَبِّحۡ", "ayah": 3, "fiil": "amar", "fail": "أَنتَ (engkau) — tersembunyi", "fail_salah": ["رَبِّكَ (Tuhanmu) — isim zahir", "هُوَ (Dia/ia) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il amar; faa'il أَنتَ tersembunyi."}, {"ar": "وَٱسۡتَغۡفِرۡهُ", "ayah": 3, "fiil": "amar", "fail": "أَنتَ (engkau) — tersembunyi", "fail_salah": ["هُ (Dia) — dhamir bersambung", "هُوَ (Dia/ia) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il amar; faa'il أَنتَ; هُ ialah maf'ul bih."}, {"ar": "كَانَ", "ayah": 3, "fiil": "madhi", "fail": "—", "fail_salah": [], "tanya_fail": false, "nota": "Fe'il naqis — ada isim kana."}], "112": [{"ar": "قُلۡ", "ayah": 1, "fiil": "amar", "fail": "أَنتَ (engkau) — tersembunyi", "fail_salah": ["هُوَ (Dia/ia) — tersembunyi", "أَنَا (aku) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il amar; faa'il أَنتَ tersembunyi."}, {"ar": "يَلِدۡ", "ayah": 3, "fiil": "mudhari", "fail": "هُوَ (Dia) — tersembunyi", "fail_salah": ["أَنتَ (engkau) — tersembunyi", "أَنَا (aku) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' majzum oleh لَمۡ; faa'il هُوَ tersembunyi."}, {"ar": "يُولَدۡ", "ayah": 3, "fiil": "mudhari", "fail": "—", "fail_salah": [], "tanya_fail": false, "nota": "Mudhari' mabni majhul — ada naib faa'il."}, {"ar": "يَكُن", "ayah": 4, "fiil": "mudhari", "fail": "—", "fail_salah": [], "tanya_fail": false, "nota": "Fe'il naqis — ada isim kana."}], "113": [{"ar": "قُلۡ", "ayah": 1, "fiil": "amar", "fail": "أَنتَ (engkau) — tersembunyi", "fail_salah": ["هُوَ (Dia/ia) — tersembunyi", "أَنَا (aku) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il amar; faa'il أَنتَ tersembunyi."}, {"ar": "أَعُوذُ", "ayah": 1, "fiil": "mudhari", "fail": "أَنَا (aku) — tersembunyi", "fail_salah": ["أَنتَ (engkau) — tersembunyi", "رَبِّ (Tuhan) — isim zahir", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' bermula hamzah; faa'il أَنَا tersembunyi."}, {"ar": "خَلَقَ", "ayah": 2, "fiil": "madhi", "fail": "هُوَ (Dia) — tersembunyi", "fail_salah": ["شَرِّ (kejahatan) — isim zahir", "أَنتَ (engkau) — tersembunyi", "أَنَا (aku) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il madhi; faa'il هُوَ (Allah) tersembunyi."}, {"ar": "وَقَبَ", "ayah": 3, "fiil": "madhi", "fail": "هُوَ (ia) — tersembunyi", "fail_salah": ["أَنَا (aku) — tersembunyi", "أَنتَ (engkau) — tersembunyi", "تَ (engkau) — dhamir bersambung"], "tanya_fail": true, "nota": "Fe'il madhi; faa'il هُوَ (malam gelap) tersembunyi."}, {"ar": "حَسَدَ", "ayah": 5, "fiil": "madhi", "fail": "هُوَ (ia) — tersembunyi", "fail_salah": ["أَنَا (aku) — tersembunyi", "نَحۡنُ (kami) — tersembunyi", "هِيَ (ia, perempuan) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il madhi; faa'il هُوَ (si pendengki) tersembunyi."}], "114": [{"ar": "قُلۡ", "ayah": 1, "fiil": "amar", "fail": "أَنتَ (engkau) — tersembunyi", "fail_salah": ["هُوَ (Dia/ia) — tersembunyi", "أَنَا (aku) — tersembunyi", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Fe'il amar; faa'il أَنتَ tersembunyi."}, {"ar": "أَعُوذُ", "ayah": 1, "fiil": "mudhari", "fail": "أَنَا (aku) — tersembunyi", "fail_salah": ["أَنتَ (engkau) — tersembunyi", "رَبِّ (Tuhan) — isim zahir", "نَحۡنُ (kami) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari' bermula hamzah; faa'il أَنَا tersembunyi."}, {"ar": "يُوَسۡوِسُ", "ayah": 5, "fiil": "mudhari", "fail": "هُوَ (ia) — tersembunyi", "fail_salah": ["ٱلنَّاسِ (manusia) — isim zahir", "صُدُورِ (dada) — isim zahir", "أَنَا (aku) — tersembunyi"], "tanya_fail": true, "nota": "Mudhari'; faa'il هُوَ (si pembisik) tersembunyi."}]}};
 
 const PAUSE = /[ۖ-ۜ]/g;
 const SURAH = {};
 AYAT.surah.forEach(s => { SURAH[String(s.no)] = s; });
 
-let chosenSurah = null;
+const SEGMEN = {
+  kosa: { label: "Kosa Kata", desc: "Makna perkataan demi perkataan",
+          parts: [["A", "Pilihan berganda"], ["B", "Taip jawapan"]] },
+  nahu: { label: "Nahu & Sarf", desc: "Isim/fe'il/haraf · jumlah · fe'il & faa'il",
+          parts: [["A", "Isim · Fe'il · Haraf"], ["B", "Jumlah Ismiyah / Fi'liyah"], ["C", "Fe'il & Faa'il"]] }
+};
+const FIIL_LABEL = { madhi: "Fe'il Madhi", mudhari: "Fe'il Mudhari'", amar: "Fe'il Amar" };
+const JENIS_LABEL = { isim: "Isim", fiil: "Fe'il", harf: "Haraf" };
+const JUMLAH_LABEL = { ismiyah: "Jumlah Ismiyah", filiyah: "Jumlah Fi'liyah" };
+
+let chosenSeg = "kosa", chosenSurah = null;
 let studentName = "", studentClass = "";
-let allQuestions = [], currentIndex = 0, nA = 0, nB = 0;
-let scoreA = 0, scoreB = 0, reviewLog = [];
+let questions = [], currentIndex = 0, reviewLog = [];
+let score = {}, count = {};
 
 function surahLabel(key) { return key === "all" ? "Campuran Semua Surah" : "Surah " + SURAH[key].name; }
+function shortName(k) { return SURAH[k].name.replace(/ \(.*\)/, ''); }
+function keysFor(key) { return key === "all" ? Object.keys(BANK) : [key]; }
+function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function escapeHtml(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]); }
+function clean(s) { return s.toLowerCase().replace(/[()\[\].,!?'’"]/g, " ").replace(/\s+/g, " ").trim(); }
 
+/* ---------- Skrin awal ---------- */
+function countFor(seg, k) {
+  if (seg === "kosa") return BANK[k].filter(w => !w.skip).length;
+  return NAHU.jenis[k].length + NAHU.jumlah[k].length + NAHU.fiil[k].length;
+}
+function buildSegGrid() {
+  const g = document.getElementById('seg-grid'); g.innerHTML = "";
+  Object.entries(SEGMEN).forEach(([key, s]) => {
+    const b = document.createElement('button');
+    b.className = 'surah-btn seg-btn' + (key === chosenSeg ? ' selected' : ''); b.dataset.seg = key;
+    b.innerHTML = `<span><strong>${s.label}</strong><span class="cnt">${s.desc}</span></span>`;
+    b.onclick = () => { chosenSeg = key; buildSegGrid(); buildSurahGrid(); updateInfo(); };
+    g.appendChild(b);
+  });
+}
 function buildSurahGrid() {
-  const grid = document.getElementById('surah-grid');
+  const grid = document.getElementById('surah-grid'); grid.innerHTML = "";
+  const unit = chosenSeg === "kosa" ? "kalimah" : "item";
   AYAT.surah.forEach(s => {
     const key = String(s.no);
-    const n = BANK[key].filter(w => !w.skip).length;
     const btn = document.createElement('button');
-    btn.className = 'surah-btn'; btn.dataset.key = key;
-    btn.innerHTML = `<span>${s.name}<span class="cnt">${n} kalimah</span></span><span class="ar">${s.ar}</span>`;
+    btn.className = 'surah-btn' + (chosenSurah === key ? ' selected' : ''); btn.dataset.key = key;
+    btn.innerHTML = `<span>${s.name}<span class="cnt">${countFor(chosenSeg, key)} ${unit}</span></span><span class="ar">${s.ar}</span>`;
     btn.onclick = () => selectSurah(key);
     grid.appendChild(btn);
   });
   const all = document.createElement('button');
-  all.className = 'surah-btn all'; all.dataset.key = 'all';
-  const total = Object.values(BANK).reduce((t, l) => t + l.filter(w => !w.skip).length, 0);
-  all.innerHTML = `🌿 Campuran Semua Surah &middot; <span style="font-weight:400">${total} kalimah</span>`;
+  all.className = 'surah-btn all' + (chosenSurah === 'all' ? ' selected' : ''); all.dataset.key = 'all';
+  const total = Object.keys(BANK).reduce((t, k) => t + countFor(chosenSeg, k), 0);
+  all.innerHTML = `🌿 Campuran Semua Surah &middot; <span style="font-weight:400">${total} ${unit}</span>`;
   all.onclick = () => selectSurah('all');
   grid.appendChild(all);
 }
-
 function selectSurah(key) {
   chosenSurah = key;
-  document.querySelectorAll('.surah-btn').forEach(b => b.classList.toggle('selected', b.dataset.key === key));
-  const pool = getPool(key);
-  document.getElementById('info-a').textContent = COUNT_A;
-  document.getElementById('info-b').textContent = Math.min(COUNT_B, pool.length);
+  document.querySelectorAll('#surah-grid .surah-btn').forEach(b => b.classList.toggle('selected', b.dataset.key === key));
+  updateInfo();
+}
+function planCounts() {
+  const keys = chosenSurah ? keysFor(chosenSurah) : Object.keys(BANK);
+  if (chosenSeg === "kosa") {
+    const n = keys.reduce((t, k) => t + BANK[k].filter(w => !w.skip).length, 0);
+    return { A: 20, B: Math.min(10, n) };
+  }
+  const sum = sec => keys.reduce((t, k) => t + NAHU[sec][k].length, 0);
+  return { A: Math.min(10, sum('jenis')), B: Math.min(5, sum('jumlah')), Cv: Math.min(5, sum('fiil')) };
+}
+function updateInfo() {
+  const box = document.getElementById('seg-info');
+  if (chosenSeg === "kosa") {
+    const c = planCounts();
+    box.innerHTML = `<strong>Bahagian A</strong> &mdash; ${c.A} soalan pilihan berganda (makna)<br>
+      <strong>Bahagian B</strong> &mdash; ${c.B} soalan taip jawapan sendiri (makna dalam Bahasa Melayu)<br>
+      <span style="font-size:12.5px;">Setiap kalimah dipaparkan bersama ayatnya supaya maknanya difahami dalam konteks.</span>`;
+  } else {
+    const c = planCounts();
+    box.innerHTML = `<strong>Bahagian A</strong> &mdash; ${c.A} soalan: kenali <em>isim, fe'il</em> atau <em>haraf</em><br>
+      <strong>Bahagian B</strong> &mdash; ${c.B} soalan: <em>jumlah ismiyah</em> atau <em>jumlah fi'liyah</em><br>
+      <strong>Bahagian C</strong> &mdash; ${c.Cv} fe'il: <em>madhi / mudhari' / amar</em> &amp; siapa <em>faa'il</em>nya<br>
+      <span style="font-size:12.5px;">Selepas setiap jawapan, nota ringkas dipaparkan sebagai pengajaran.</span>`;
+  }
 }
 
-function getPool(key) {
-  const keys = key === 'all' ? Object.keys(BANK) : [key];
+/* ---------- Konteks ayat ---------- */
+function ayahHtml(k, a, forms, phrase) {
+  const s = SURAH[k];
+  const toks = s.ayat[a - 1].split(' ');
+  const cleanToks = toks.map(t => t.replace(PAUSE, ''));
+  let mark = new Array(toks.length).fill(false);
+  if (phrase) {
+    const p = phrase.split(' ');
+    for (let i = 0; i + p.length <= cleanToks.length; i++) {
+      if (p.every((x, j) => cleanToks[i + j] === x)) { for (let j = 0; j < p.length; j++) mark[i + j] = true; break; }
+    }
+  } else {
+    cleanToks.forEach((t, i) => { if (forms.includes(t)) mark[i] = true; });
+  }
+  let html = "";
+  toks.forEach((t, i) => {
+    const open = mark[i] && !(i > 0 && mark[i - 1]), close = mark[i] && !(i + 1 < toks.length && mark[i + 1]);
+    html += (i ? " " : "") + (open ? "<mark>" : "") + escapeHtml(t) + (close ? "</mark>" : "");
+  });
+  return `${html}<span class="ref">${shortName(k)} : ${a}</span>`;
+}
+
+/* ---------- Bina soalan: Kosa Kata ---------- */
+function vocabPool(key) {
   const pool = [];
-  keys.forEach(k => BANK[k].forEach(w => { if (!w.skip) pool.push(Object.assign({ surah: k }, w)); }));
+  keysFor(key).forEach(k => BANK[k].forEach(w => { if (!w.skip) pool.push(Object.assign({ surah: k }, w)); }));
   return pool;
 }
-
-function shuffle(arr) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
-  return a;
-}
-
-function buildRepeatedOrder(size, count) {
+function buildRepeatedOrder(size, cnt) {
   let order = [];
-  while (order.length < count) order = order.concat(shuffle([...Array(size).keys()]));
-  order = order.slice(0, count);
-  for (let i = 1; i < order.length; i++) {
-    if (order[i] === order[i - 1]) {
-      for (let j = i + 1; j < order.length; j++) {
-        if (order[j] !== order[i - 1] && order[j] !== order[i]) { [order[i], order[j]] = [order[j], order[i]]; break; }
-      }
-    }
+  while (order.length < cnt) order = order.concat(shuffle([...Array(size).keys()]));
+  order = order.slice(0, cnt);
+  for (let i = 1; i < order.length; i++) if (order[i] === order[i - 1]) {
+    for (let j = i + 1; j < order.length; j++) if (order[j] !== order[i - 1] && order[j] !== order[i]) { [order[i], order[j]] = [order[j], order[i]]; break; }
   }
   return order;
 }
-
-function buildMCQOptions(pool, w) {
-  const avoid = w.avoid || [];
-  const seen = new Set([w.makna.toLowerCase()]);
-  const same = pool.filter(x => x.surah === w.surah);
-  const cand = shuffle(same).concat(shuffle(pool.filter(x => x.surah !== w.surah)));
-  const out = [];
+function vocabOptions(pool, w) {
+  const avoid = w.avoid || [], seen = new Set([w.makna.toLowerCase()]), out = [];
+  const cand = shuffle(pool.filter(x => x.surah === w.surah)).concat(shuffle(pool.filter(x => x.surah !== w.surah)));
   for (const x of cand) {
     if (out.length >= 3) break;
     const m = x.makna.toLowerCase();
@@ -319,30 +383,57 @@ function buildMCQOptions(pool, w) {
   }
   return shuffle([w.makna, ...out]);
 }
-
-function initQuestions() {
-  const pool = getPool(chosenSurah);
-  nA = COUNT_A; nB = Math.min(COUNT_B, pool.length);
-  const qa = buildRepeatedOrder(pool.length, nA).map(i => ({ type: 'mcq', w: pool[i], options: buildMCQOptions(pool, pool[i]) }));
-  const qb = shuffle([...Array(pool.length).keys()]).slice(0, nB).map(i => ({ type: 'text', w: pool[i] }));
-  allQuestions = qa.concat(qb);
+function buildVocab() {
+  const pool = vocabPool(chosenSurah);
+  const ctx = w => ayahHtml(w.surah, w.ayah[0], [w.ar].concat(w.varian || []), null) ;
+  const qa = buildRepeatedOrder(pool.length, 20).map(i => {
+    const w = pool[i];
+    return { sec: "A", type: "mcq", big: w.ar, ctx: ctx(w), ins: "Apakah makna kalimah ini?",
+             options: vocabOptions(pool, w), correct: w.makna, review: [w.ar, w.makna], ref: `${shortName(w.surah)} : ${w.ayah[0]}` };
+  });
+  const qb = shuffle([...Array(pool.length).keys()]).slice(0, Math.min(10, pool.length)).map(i => {
+    const w = pool[i];
+    return { sec: "B", type: "text", big: w.ar, ctx: ctx(w), ins: "Tulis makna kalimah ini dalam Bahasa Melayu:",
+             correct: w.makna, alt: w.alt || [], review: [w.ar, w.makna], ref: `${shortName(w.surah)} : ${w.ayah[0]}` };
+  });
+  return qa.concat(qb);
 }
 
-function escapeHtml(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]); }
-
-function ayahHtml(w) {
-  const s = SURAH[w.surah];
-  const forms = [w.ar].concat(w.varian || []);
-  const a = w.ayah[0];
-  const text = s.ayat[a - 1];
-  const html = text.split(' ').map(tok => {
-    const clean = tok.replace(PAUSE, '');
-    return forms.includes(clean) ? `<mark>${escapeHtml(tok)}</mark>` : escapeHtml(tok);
-  }).join(' ');
-  const more = w.ayah.length > 1 ? ` (juga ayat ${w.ayah.slice(1).join(', ')})` : '';
-  return `${html}<span class="ref">${s.name.replace(/ \(.*\)/, '')} : ${a}${more}</span>`;
+/* ---------- Bina soalan: Nahu & Sarf ---------- */
+function nahuPool(sec, key) { return keysFor(key).flatMap(k => NAHU[sec][k].map(x => Object.assign({ surah: k }, x))); }
+function buildNahu() {
+  const qs = [];
+  shuffle(nahuPool('jenis', chosenSurah)).slice(0, 10).forEach(x => qs.push({
+    sec: "A", type: "mcq", big: x.ar, ctx: ayahHtml(x.surah, x.ayah, [x.ar], null),
+    ins: "Kalimah ini ialah… (lihat kalimah utama; abaikan dhamir yang bersambung di hujung)",
+    options: ["Isim", "Fe'il", "Haraf"], correct: JENIS_LABEL[x.jenis], nota: x.nota,
+    review: [x.ar, JENIS_LABEL[x.jenis]], ref: `${shortName(x.surah)} : ${x.ayah}`, fixed: true
+  }));
+  shuffle(nahuPool('jumlah', chosenSurah)).slice(0, 5).forEach(x => qs.push({
+    sec: "B", type: "mcq", big: x.teks, small: true, ctx: ayahHtml(x.surah, x.ayah, [], x.teks),
+    ins: "Ayat (jumlah) yang diserlahkan ini ialah…",
+    options: ["Jumlah Ismiyah", "Jumlah Fi'liyah"], correct: JUMLAH_LABEL[x.jenis], nota: x.nota,
+    review: [x.teks, JUMLAH_LABEL[x.jenis]], ref: `${shortName(x.surah)} : ${x.ayah}`, fixed: true
+  }));
+  shuffle(nahuPool('fiil', chosenSurah)).slice(0, 5).forEach(x => {
+    const ref = `${shortName(x.surah)} : ${x.ayah}`;
+    qs.push({
+      sec: "C", type: "mcq", big: x.ar, ctx: ayahHtml(x.surah, x.ayah, [x.ar], null),
+      ins: "Fe'il dalam kalimah ini ialah… (abaikan وَ / فَ di awal)",
+      options: ["Fe'il Madhi", "Fe'il Mudhari'", "Fe'il Amar"], correct: FIIL_LABEL[x.fiil],
+      nota: x.tanya_fail ? "" : x.nota, review: [x.ar, FIIL_LABEL[x.fiil]], ref, fixed: true
+    });
+    if (x.tanya_fail) qs.push({
+      sec: "C", type: "mcq", big: x.ar, ctx: ayahHtml(x.surah, x.ayah, [x.ar], null),
+      ins: "Siapakah faa'il (pelaku) bagi fe'il ini?",
+      options: shuffle([x.fail].concat(x.fail_salah)), correct: x.fail, nota: x.nota,
+      review: [x.ar, "Faa'il: " + x.fail], ref
+    });
+  });
+  return qs;
 }
 
+/* ---------- Aliran kuiz ---------- */
 function startQuiz() {
   studentName = document.getElementById('stu-name').value.trim();
   studentClass = document.getElementById('stu-class').value.trim();
@@ -350,37 +441,41 @@ function startQuiz() {
   if (!chosenSurah) { errBox.textContent = "Sila pilih surah terlebih dahulu."; return; }
   if (!studentName || !studentClass) { errBox.textContent = "Sila isi Nama dan Kelas sebelum mula."; return; }
   errBox.textContent = "";
-  initQuestions();
-  currentIndex = 0; scoreA = 0; scoreB = 0; reviewLog = [];
+  questions = chosenSeg === "kosa" ? buildVocab() : buildNahu();
+  score = {}; count = {};
+  questions.forEach(q => { count[q.sec] = (count[q.sec] || 0) + 1; score[q.sec] = 0; });
+  currentIndex = 0; reviewLog = [];
   document.getElementById('screen-intro').classList.add('hidden');
   document.getElementById('screen-quiz').classList.remove('hidden');
-  document.getElementById('surah-chip').textContent = surahLabel(chosenSurah);
+  document.getElementById('surah-chip').textContent = `${SEGMEN[chosenSeg].label} · ${surahLabel(chosenSurah)}`;
   renderQuestion();
 }
 
+function partName(sec) { return (SEGMEN[chosenSeg].parts.find(p => p[0] === sec) || [sec, ""])[1]; }
+
 function renderQuestion() {
-  const q = allQuestions[currentIndex];
-  const total = allQuestions.length;
+  const q = questions[currentIndex], total = questions.length;
   document.getElementById('progress-label').textContent = `Soalan ${currentIndex + 1} / ${total}`;
   document.getElementById('progress-percent').textContent = Math.round(currentIndex / total * 100) + '%';
   document.getElementById('progress-fill').style.width = (currentIndex / total * 100) + '%';
-  const isPartB = q.type === 'text';
-  document.getElementById('section-tag').textContent = isPartB ? "BAHAGIAN B · TAIP JAWAPAN" : "BAHAGIAN A · PILIHAN BERGANDA";
-  document.getElementById('q-instruction').textContent = isPartB ? "Tulis makna kalimah ini dalam Bahasa Melayu:" : "Apakah makna kalimah ini?";
-  document.getElementById('q-arabic').textContent = q.w.ar;
-  document.getElementById('q-ayah').innerHTML = ayahHtml(q.w);
-  const fb = document.getElementById('feedback'); fb.textContent = ""; fb.className = "feedback-msg";
+  document.getElementById('section-tag').textContent = `BAHAGIAN ${q.sec} · ${partName(q.sec).toUpperCase()}`;
+  document.getElementById('q-instruction').textContent = q.ins;
+  const big = document.getElementById('q-arabic');
+  big.textContent = q.big; big.classList.toggle('phrase', !!q.small);
+  document.getElementById('q-ayah').innerHTML = q.ctx;
+  const fb = document.getElementById('feedback'); fb.innerHTML = ""; fb.className = "feedback-msg";
   document.getElementById('next-btn').style.display = "none";
   document.getElementById('submit-text-btn').style.display = "none";
-  const mcqArea = document.getElementById('mcq-area');
-  const textArea = document.getElementById('text-area');
+  const mcqArea = document.getElementById('mcq-area'), textArea = document.getElementById('text-area');
   mcqArea.innerHTML = "";
-  if (!isPartB) {
+  if (q.type === "mcq") {
     mcqArea.classList.remove('hidden'); textArea.classList.add('hidden');
+    mcqArea.classList.toggle('row', !!q.fixed);
     q.options.forEach(opt => {
       const btn = document.createElement('button');
-      btn.className = "option-btn"; btn.textContent = opt;
-      btn.onclick = () => selectMCQ(btn, opt, q.w.makna);
+      btn.className = "option-btn" + (/[؀-ۿ]/.test(opt) ? " has-ar" : "");
+      btn.textContent = opt;
+      btn.onclick = () => selectMCQ(btn, opt);
       mcqArea.appendChild(btn);
     });
   } else {
@@ -393,69 +488,73 @@ function renderQuestion() {
   }
 }
 
-function selectMCQ(btn, chosen, correct) {
+function showFeedback(ok, q, extra) {
+  const fb = document.getElementById('feedback');
+  const nota = q.nota ? `<div class="nota">📘 ${escapeHtml(q.nota)}</div>` : "";
+  fb.innerHTML = (ok ? `Betul! ✔${extra || ""}` : `Kurang tepat. Jawapan: ${escapeHtml(q.correct)}`) + nota;
+  fb.className = "feedback-msg " + (ok ? "correct" : "wrong");
+}
+
+function selectMCQ(btn, chosen) {
+  const q = questions[currentIndex];
   const allBtns = document.querySelectorAll('#mcq-area .option-btn');
   allBtns.forEach(b => b.classList.add('disabled'));
-  const ok = chosen === correct;
-  const fb = document.getElementById('feedback');
-  if (ok) { btn.classList.add('correct'); scoreA++; fb.textContent = "Betul! ✔"; fb.className = "feedback-msg correct"; }
-  else {
-    btn.classList.add('wrong');
-    allBtns.forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
-    fb.textContent = `Kurang tepat. Jawapan: ${correct}`; fb.className = "feedback-msg wrong";
-  }
+  const ok = chosen === q.correct;
+  if (ok) { btn.classList.add('correct'); score[q.sec]++; }
+  else { btn.classList.add('wrong'); allBtns.forEach(b => { if (b.textContent === q.correct) b.classList.add('correct'); }); }
+  showFeedback(ok, q);
   logAnswer(ok);
   document.getElementById('next-btn').style.display = "inline-block";
 }
 
-function clean(s) { return s.toLowerCase().replace(/[()\[\].,!?'’"]/g, " ").replace(/\s+/g, " ").trim(); }
-
-function isAnswerAccepted(userInput, w) {
+function isAnswerAccepted(userInput, q) {
   const u = clean(userInput);
   if (!u) return false;
-  const accepted = [w.makna].concat(w.alt || []).map(clean).filter(Boolean);
+  const accepted = [q.correct].concat(q.alt || []).map(clean).filter(Boolean);
   if (accepted.includes(u)) return true;
-  // padanan longgar: hanya jika jawapan cukup panjang (elak 1–2 huruf diterima)
   if (u.length < 4) return false;
   return accepted.some(a => a.length >= 4 && (u.includes(a) || a.includes(u)));
 }
 
 function submitTextAnswer() {
   const input = document.getElementById('text-answer-input');
-  const q = allQuestions[currentIndex];
-  const ok = isAnswerAccepted(input.value, q.w);
+  const q = questions[currentIndex];
+  const ok = isAnswerAccepted(input.value, q);
   input.disabled = true;
   document.getElementById('submit-text-btn').style.display = "none";
-  const fb = document.getElementById('feedback');
-  if (ok) { scoreB++; fb.textContent = `Betul! ✔  (${q.w.makna})`; fb.className = "feedback-msg correct"; }
-  else { fb.textContent = `Jawapan dijangka: ${q.w.makna}`; fb.className = "feedback-msg wrong"; }
+  if (ok) score[q.sec]++;
+  showFeedback(ok, q, ok ? `  (${escapeHtml(q.correct)})` : "");
   logAnswer(ok);
   document.getElementById('next-btn').style.display = "inline-block";
 }
 
 function logAnswer(ok) {
-  const w = allQuestions[currentIndex].w;
-  reviewLog.push({ ar: w.ar, makna: w.makna, ref: `${SURAH[w.surah].name.replace(/ \(.*\)/, '')} : ${w.ayah[0]}`, ok });
+  const q = questions[currentIndex];
+  reviewLog.push({ ar: q.review[0], ans: q.review[1], ref: q.ref, ok });
 }
 
 function nextQuestion() {
   currentIndex++;
-  if (currentIndex >= allQuestions.length) showResults(); else renderQuestion();
+  if (currentIndex >= questions.length) showResults(); else renderQuestion();
 }
+
+function secs() { return Object.keys(count).sort(); }
+function totals() { const t = secs().reduce((a, s) => a + score[s], 0), m = secs().reduce((a, s) => a + count[s], 0); return [t, m]; }
 
 function showResults() {
   document.getElementById('screen-quiz').classList.add('hidden');
   document.getElementById('screen-result').classList.remove('hidden');
-  const total = scoreA + scoreB, max = nA + nB;
+  const [total, max] = totals();
   document.getElementById('final-score').textContent = total;
   document.getElementById('final-den').textContent = `/ ${max}`;
-  document.getElementById('result-name-line').textContent = `${studentName} · ${studentClass} · ${surahLabel(chosenSurah)}`;
-  document.getElementById('score-a').textContent = `${scoreA} / ${nA}`;
-  document.getElementById('score-b').textContent = `${scoreB} / ${nB}`;
+  document.getElementById('result-name-line').textContent = `${studentName} · ${studentClass}`;
+  document.getElementById('result-seg-line').textContent = `${SEGMEN[chosenSeg].label} · ${surahLabel(chosenSurah)}`;
+  document.getElementById('breakdown').innerHTML = secs().map(s =>
+    `<div class="breakdown-item"><div class="label">Bahagian ${s}</div><div class="val">${score[s]} / ${count[s]}</div><div class="sub">${partName(s)}</div></div>`).join("");
   const pct = total / max;
   document.getElementById('encourage').textContent =
     pct >= 0.85 ? "Tahniah! Semoga setiap kalimah yang difahami menambah khusyuk dalam solat."
-    : pct >= 0.6 ? "Bagus! Ulang sekali lagi kalimah yang tersilap, insya-Allah makin mantap."
+    : pct >= 0.6 ? "Bagus! Ulang sekali lagi soalan yang tersilap, insya-Allah makin mantap."
     : "Salah tak mengapa — yang penting usaha tidak putus. Ulang kuiz ini, setiap ulangan berpahala. 🌿";
   const box = document.getElementById('review-list');
   box.innerHTML = "<div style='font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#8a7440; font-weight:700; margin-bottom:6px;'>Semakan Jawapan</div>";
@@ -463,41 +562,63 @@ function showResults() {
     const row = document.createElement('div');
     row.className = "review-item";
     row.innerHTML = `<span class="arabic-mini">${escapeHtml(r.ar)}</span>
-      <span class="meaning-mini">${escapeHtml(r.makna)}<small>${escapeHtml(r.ref)}</small></span>
+      <span class="meaning-mini">${escapeHtml(r.ans)}<small>${escapeHtml(r.ref)}</small></span>
       <span class="${r.ok ? 'badge-ok' : 'badge-no'}">${r.ok ? 'Betul' : 'Salah'}</span>`;
     box.appendChild(row);
   });
+  saveToSheet();
+}
+
+function butiran() { return secs().map(s => `${s} ${score[s]}/${count[s]}`).join(" · "); }
+
+function saveToSheet() {
+  const box = document.getElementById('save-status');
+  if (!SHEET_URL || SHEET_URL.indexOf('script.google.com') === -1) { box.textContent = ""; return; }
+  const [total, max] = totals();
+  const salah = [...new Set(reviewLog.filter(r => !r.ok).map(r => `${r.ar} (${r.ref})`))].join("; ");
+  const data = { nama: studentName, kelas: studentClass, segmen: SEGMEN[chosenSeg].label, surah: surahLabel(chosenSurah),
+                 butiran: butiran(), jumlah: `${total}/${max}`, peratus: Math.round(total / max * 100) + "%", salah };
+  box.textContent = "Merekodkan keputusan…";
+  fetch(SHEET_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) })
+    .then(() => { box.innerHTML = "<span style='color:var(--success); font-weight:600;'>✔ Keputusan telah direkodkan untuk Ustaz.</span>"; })
+    .catch(() => { box.innerHTML = "<span style='color:var(--error);'>Keputusan belum dapat direkodkan (semak internet). Sila tekan butang WhatsApp di bawah.</span>"; });
 }
 
 function restartQuiz() {
   document.getElementById('screen-result').classList.add('hidden');
   document.getElementById('screen-intro').classList.remove('hidden');
+  updateInfo();
   window.scrollTo(0, 0);
 }
 
 function sendWhatsApp() {
-  const total = scoreA + scoreB;
+  const [total, max] = totals();
   const tarikh = new Date().toLocaleDateString('ms-MY', { day: '2-digit', month: 'long', year: 'numeric' });
+  const lines = secs().map(s => `Bahagian ${s} (${partName(s)}): ${score[s]} / ${count[s]}`).join("\n");
   const msg =
-`*KEPUTUSAN KUIZ KOSA KATA - ${surahLabel(chosenSurah).toUpperCase()}*
+`*KEPUTUSAN KUIZ ${SEGMEN[chosenSeg].label.toUpperCase()} - ${surahLabel(chosenSurah).toUpperCase()}*
 Institut Al-Quran Attartilqi
 
 Nama: ${studentName}
 Kelas: ${studentClass}
 Tarikh: ${tarikh}
 
-Bahagian A (MCQ): ${scoreA} / ${nA}
-Bahagian B (Taip Jawapan): ${scoreB} / ${nB}
-*Jumlah Skor: ${total} / ${nA + nB}*`;
+${lines}
+*Jumlah Skor: ${total} / ${max}*`;
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-buildSurahGrid();
-// Pautan terus ke satu surah: ...html?surah=103  (atau ?surah=all)
+/* ---------- Mula ---------- */
 (function () {
-  const p = new URLSearchParams(location.search).get('surah');
-  if (p && (p === 'all' || BANK[p])) selectSurah(p);
+  const p = new URLSearchParams(location.search);
+  const seg = p.get('seg');
+  if (seg === 'nahu' || seg === 'kosa') chosenSeg = seg;
+  buildSegGrid(); buildSurahGrid();
+  const s = p.get('surah');
+  if (s && (s === 'all' || BANK[s])) selectSurah(s);
+  updateInfo();
 })();
+
 </script>
 </body>
 </html>
